@@ -728,7 +728,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>"$PSScriptRoot\Templates\ReportTemplate.html"</dev:defaultValue>
+          <dev:defaultValue>"$PSScriptRoot\data\Templates\ReportTemplate.html"</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -767,7 +767,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>"$PSScriptRoot\Templates\ReportTemplate.html"</dev:defaultValue>
+        <dev:defaultValue>"$PSScriptRoot\data\Templates\ReportTemplate.html"</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Title</maml:name>

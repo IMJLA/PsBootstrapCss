@@ -69,7 +69,7 @@ Aliases:
 
 Required: False
 Position: 4
-Default value: "$PSScriptRoot\Templates\ReportTemplate.html"
+Default value: "$PSScriptRoot\data\Templates\ReportTemplate.html"
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

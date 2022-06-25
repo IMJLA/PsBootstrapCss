@@ -24,32 +24,31 @@ function New-BootstrapReport {
         [String[]]$Body,
 
         #The path to the HTML report template that includes the Boostrap CSS
-        [String]$TemplatePath = "$PSScriptRoot\Templates\ReportTemplate.html"
+        [String]$TemplatePath = "$PSScriptRoot\data\Templates\ReportTemplate.html"
     )
-    begin{
+    begin {
         [String]$Report = Get-Content $TemplatePath
-        if ($null -eq $report){Write-Host "$TemplatePath not loaded.  Failure.  Error."}
+        if ($null -eq $report) { Write-Host "$TemplatePath not loaded.  Failure.  Error." }
     }
-    process{
+    process {
 
         # Turn URLs into hyperlinks
         $URLs = ($Body | Select-String -Pattern 'http[s]?:\/\/[^\s\"\<\>\#\%\{\}\|\\\^\~\[\]\`]*' -AllMatches).Matches.Value | Sort-Object -Unique
         foreach ($URL in $URLs) {
             if ($URL.Length -gt 50) {
-                $Body = $Body.Replace($URL,"<a href=$URL>$($URL[0..46] -join '')...</a>")
-            }
-            else {
-                $Body = $Body.Replace($URL,"<a href=$URL>$URL</a>")
+                $Body = $Body.Replace($URL, "<a href=$URL>$($URL[0..46] -join '')...</a>")
+            } else {
+                $Body = $Body.Replace($URL, "<a href=$URL>$URL</a>")
             }
         }
-        
 
-        $Report = $Report -replace '_ReportTitle_',$Title
-        $Report = $Report -replace '_ReportDescription_',$Description
-        $Report = $Report -replace '_ReportBody_',$Body
+
+        $Report = $Report -replace '_ReportTitle_', $Title
+        $Report = $Report -replace '_ReportDescription_', $Description
+        $Report = $Report -replace '_ReportBody_', $Body
 
     }
-    end{
+    end {
         Write-Output $Report
     }
 }
