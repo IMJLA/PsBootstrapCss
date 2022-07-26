@@ -2,7 +2,7 @@
 Module Name: PsBootstrapCss
 Module Guid: 86a3235a-083d-46f2-b3c6-3100418ae2c0
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.3
+Help Version: 1.0.4
 Locale: en-US
 ---
 
