@@ -2,7 +2,7 @@
 Module Name: PsBootstrapCss
 Module Guid: 86a3235a-083d-46f2-b3c6-3100418ae2c0
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.4
+Help Version: 1.0.5
 Locale: en-US
 ---
 
@@ -14,6 +14,11 @@ Use the Bootstrap CSS library to generate advanced HTML
 ### [ConvertTo-HtmlList](ConvertTo-HtmlList.md)
 
 ConvertTo-HtmlList [-InputObject] <string[]> [<CommonParameters>]
+
+
+### [Get-BootstrapTemplate](Get-BootstrapTemplate.md)
+
+Get-BootstrapTemplate 
 
 
 ### [New-BootstrapAlert](New-BootstrapAlert.md)

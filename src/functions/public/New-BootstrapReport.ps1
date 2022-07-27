@@ -27,8 +27,12 @@ function New-BootstrapReport {
         [String]$TemplatePath = "$PSScriptRoot\data\Templates\ReportTemplate.html"
     )
     begin {
-        [String]$Report = Get-Content $TemplatePath
-        if ($null -eq $report) { Write-Host "$TemplatePath not loaded.  Failure.  Error." }
+        if ($PSBoundParameters.ContainsKey('TemplatePath')) {
+            [String]$Report = Get-Content $TemplatePath
+            if ($null -eq $Report) { Write-Host "$TemplatePath not loaded.  Failure.  Error." }
+        } else {
+            [String]$Report = Get-BootstrapTemplate
+        }
     }
     process {
 
