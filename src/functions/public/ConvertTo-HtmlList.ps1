@@ -1,21 +1,31 @@
 function ConvertTo-HtmlList {
-    Param (
-        # Array of strings to convert to an HTML unordered list
-        [parameter(Mandatory=$true,Position=0,ValueFromPipeline=$true)]
-        [ValidateNotNullOrEmpty()]
-        [string[]]$InputObject
+    param (
+        [Parameter(
+            Mandatory = $true,
+            Position = 0,
+            ValueFromPipeline = $true
+        )]
+        [string[]]$InputObject,
+        [switch]$Ordered
     )
     begin {
-        $UL = @()
-        $UL += '<ul>'
+
+        if ($Ordered) {
+            $ListType = 'ol'
+        } else {
+            $ListType = 'ul'
+        }
+
+        $StringBuilder = [System.Text.StringBuilder]::new("<$ListType>")
+
     }
-    Process {
-        foreach ($ThisObject in $InputObject) {
-            $UL += "<li>$ThisObject</li>"}
+    process {
+        ForEach ($ThisObject in $InputObject) {
+            $null = $StringBuilder.Append("<li>$ThisObject</li>")
+        }
     }
     end {
-        $UL += '</ul>'
-        Write-Output $UL
+        $null = $StringBuilder.Append("</$ListType>")
+        $StringBuilder.ToString()
     }
-
 }

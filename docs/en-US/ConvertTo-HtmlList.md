@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-ConvertTo-HtmlList [-InputObject] <String[]> [<CommonParameters>]
+ConvertTo-HtmlList [-InputObject] <String[]> [-Ordered] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,6 +42,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Ordered
+{{ Fill Ordered Description }}
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

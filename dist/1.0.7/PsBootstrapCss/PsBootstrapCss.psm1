@@ -1,24 +1,71 @@
 
+Function ConvertTo-BootstrapListGroup {
+    <#
+        .SYNOPSIS
+            Upgrade a boring HTML list to a fancy Bootstrap list group
+        .DESCRIPTION
+            Applies the Bootstrap 'list-group' CSS class to an HTML list
+            Applies the Bootstrap 'list-group-item' CSS class to each list item
+        .OUTPUTS
+            A string wih the code for the Bootstrap list
+        .EXAMPLE
+            1,2,3 |
+            ConvertTo-HtmlList |
+            ConvertTo-BootstrapListGroup
+
+            This example returns the following string:
+            '<ul class ="list-group"><li class ="list-group-item>1</li><li class ="list-group-item>2</li><li class ="list-group-item>3</li></ul>'
+    #>
+    [OutputType([System.String])]
+    [CmdletBinding()]
+    param(
+        #The HTML table to apply the Bootstrap striped table CSS class to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [System.String[]]$HtmlList
+    )
+    begin {}
+    process {
+        ForEach ($Table in $HtmlTable) {
+            [String]$NewTable = $Table -replace '<table>', '<table class="table table-striped">'
+            Write-Output $NewTable
+        }
+    }
+    end {}
+}
 function ConvertTo-HtmlList {
-    Param (
-        # Array of strings to convert to an HTML unordered list
-        [parameter(Mandatory=$true,Position=0,ValueFromPipeline=$true)]
-        [ValidateNotNullOrEmpty()]
-        [string[]]$InputObject
+    param (
+        [Parameter(
+            Mandatory = $true,
+            Position = 0,
+            ValueFromPipeline = $true
+        )]
+        [string[]]$InputObject,
+        [switch]$Ordered
     )
     begin {
-        $UL = @()
-        $UL += '<ul>'
+
+        if ($Ordered) {
+            $ListType = 'ol'
+        } else {
+            $ListType = 'ul'
+        }
+
+        $StringBuilder = [System.Text.StringBuilder]::new("<$ListType>")
+
     }
-    Process {
-        foreach ($ThisObject in $InputObject) {
-            $UL += "<li>$ThisObject</li>"}
+    process {
+        ForEach ($ThisObject in $InputObject) {
+            $null = $StringBuilder.Append("<li>$ThisObject</li>")
+        }
     }
     end {
-        $UL += '</ul>'
-        Write-Output $UL
+        $null = $StringBuilder.Append("</$ListType>")
+        $StringBuilder.ToString()
     }
-
 }
 function Get-BootstrapTemplate {
     @"
@@ -88,6 +135,7 @@ function New-BootstrapColumn {
             This example returns the following string:
             '<div class="container"><div class="row justify-content-md-center"><div class="col col-lg-12"><h1>Heading</h1></div></div></div>'
     #>
+    [OutputType([System.String])]
     [CmdletBinding()]
     param(
         #The HTML element to apply the Bootstrap column to
@@ -103,15 +151,18 @@ function New-BootstrapColumn {
         )]
         [Int]$Width = 12
     )
-    begin{}
-    process{
+    begin {
+        $NewHtml = "<div class=`"container`"><div class=`"row justify-content-md-center`">"
+    }
+    process {
         ForEach ($OldHtml in $Html) {
-            [String]$NewHtml = "<div class=`"container`"><div class=`"row justify-content-md-center`"><div class=`"col col-lg-$Width`">$OldHtml</div></div></div>"
-            Write-Output $NewHtml
+            $NewHtml = "$NewHtml<div class=`"col col-lg-$Width`">$OldHtml</div>"
         }
     }
-    end{}
-    
+    end {
+        $NewHtml = "$NewHtml</div></div>"
+        return $NewHtml
+    }
 }
 function New-BootstrapDiv {
     <#
@@ -151,6 +202,26 @@ function New-BootstrapDiv {
     }
     end{}
     
+}
+function New-BootstrapDivWithHeading {
+    param (
+        [string]$HeadingText,
+        [uint16]$HeadingLevel = 5,
+        [string]$Content,
+        [hashtable]$HeadingsAndContent
+    )
+
+    if ($PSBoundParameters.ContainsKey('HeadingsAndContent')) {
+        [string]$Text = ForEach ($Key in $HeadingsAndContent.Keys) {
+            (New-HtmlHeading $Key -Level $HeadingLevel) +
+            $HeadingsAndContent[$Key]
+        }
+    } else {
+        $Text = (New-HtmlHeading $HeadingText -Level $HeadingLevel) +
+        $Content
+    }
+
+    New-BootstrapDiv -Text $Text
 }
 function New-BootstrapGrid {
     <#
@@ -480,7 +551,9 @@ ForEach ($ThisFile in $CSharpFiles) {
     Add-Type -Path $ThisFile.FullName -ErrorAction Stop
 }
 #>
-Export-ModuleMember -Function @('ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+Export-ModuleMember -Function @('ConvertTo-BootstrapListGroup','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
+
 
 
 

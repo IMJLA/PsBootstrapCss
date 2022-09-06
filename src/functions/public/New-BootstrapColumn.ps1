@@ -12,6 +12,7 @@ function New-BootstrapColumn {
             This example returns the following string:
             '<div class="container"><div class="row justify-content-md-center"><div class="col col-lg-12"><h1>Heading</h1></div></div></div>'
     #>
+    [OutputType([System.String])]
     [CmdletBinding()]
     param(
         #The HTML element to apply the Bootstrap column to
@@ -27,13 +28,16 @@ function New-BootstrapColumn {
         )]
         [Int]$Width = 12
     )
-    begin{}
-    process{
+    begin {
+        $NewHtml = "<div class=`"container`"><div class=`"row justify-content-md-center`">"
+    }
+    process {
         ForEach ($OldHtml in $Html) {
-            [String]$NewHtml = "<div class=`"container`"><div class=`"row justify-content-md-center`"><div class=`"col col-lg-$Width`">$OldHtml</div></div></div>"
-            Write-Output $NewHtml
+            $NewHtml = "$NewHtml<div class=`"col col-lg-$Width`">$OldHtml</div>"
         }
     }
-    end{}
-    
+    end {
+        $NewHtml = "$NewHtml</div></div>"
+        return $NewHtml
+    }
 }
