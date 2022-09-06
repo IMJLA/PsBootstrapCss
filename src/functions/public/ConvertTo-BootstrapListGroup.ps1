@@ -26,12 +26,14 @@ Function ConvertTo-BootstrapListGroup {
         )]
         [System.String[]]$HtmlList
     )
-    begin {}
     process {
-        ForEach ($Table in $HtmlTable) {
-            [String]$NewTable = $Table -replace '<table>', '<table class="table table-striped">'
-            Write-Output $NewTable
+        ForEach ($List in $HtmlList) {
+
+            $List -replace
+            '<ul>', '<ul class="list-group">' -replace
+            '<ol>', '<ol class="list-group">' -replace
+            '<li>', '<li class ="list-group-item">'
+
         }
     }
-    end {}
 }

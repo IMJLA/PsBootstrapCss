@@ -27,14 +27,16 @@ Function ConvertTo-BootstrapListGroup {
         )]
         [System.String[]]$HtmlList
     )
-    begin {}
     process {
-        ForEach ($Table in $HtmlTable) {
-            [String]$NewTable = $Table -replace '<table>', '<table class="table table-striped">'
-            Write-Output $NewTable
+        ForEach ($List in $HtmlList) {
+
+            $List -replace
+            '<ul>', '<ul class="list-group">' -replace
+            '<ol>', '<ol class="list-group">' -replace
+            '<li>', '<li class ="list-group-item">'
+
         }
     }
-    end {}
 }
 function ConvertTo-HtmlList {
     param (
@@ -552,6 +554,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapListGroup','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
