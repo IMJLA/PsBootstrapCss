@@ -14,7 +14,8 @@ Build a new Bootstrap report based on an HTML template
 
 ```
 New-BootstrapReport [[-Title] <String>] [[-Description] <String>] [[-Body] <String[]>]
- [[-TemplatePath] <String>] [<CommonParameters>]
+ [[-TemplatePath] <String>] [-JavaScript] [[-ScriptPath] <String>] [[-AdditionalScriptHtml] <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,6 +29,21 @@ New-BootstrapReport -Title 'ReportTitle' -Description 'This is the report descri
 ```
 
 ## PARAMETERS
+
+### -AdditionalScriptHtml
+{{ Fill AdditionalScriptHtml Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Body
 Body of the report (tables, list groups, etc.)
@@ -55,6 +71,36 @@ Aliases:
 Required: False
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -JavaScript
+{{ Fill JavaScript Description }}
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ScriptPath
+The path to the JavaScript (inside of \<script\> tags)
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: "$PSScriptRoot\data\Templates\JavaScript.html"
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -98,7 +144,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Outputs a complete HTML report as a string
 ## NOTES
-Author: Jeremy La Camera
-Last Updated: 11/6/2016
 
 ## RELATED LINKS

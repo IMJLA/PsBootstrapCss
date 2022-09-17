@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.11] - 2022-09-17 - implemented convertto-bootstraptablescript
+
 ## [1.0.10] - 2022-09-11 - added ConvertTo-BootstrapJavascriptTable
 
 ## [1.0.9] - 2022-09-05 - bugfix ConvertTo-BootstrapListGroup

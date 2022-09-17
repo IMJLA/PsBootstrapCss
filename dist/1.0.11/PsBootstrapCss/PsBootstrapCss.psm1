@@ -102,6 +102,61 @@ Function ConvertTo-BootstrapListGroup {
         }
     }
 }
+
+
+function ConvertTo-BootstrapTableScript {
+
+    param (
+
+        # ID of the table to format with the bootstrapTable() JavaScript method.
+        [string]$TableId = '#Folders',
+
+        # CSS classes to apply to the table
+        [string]$Classes = 'table table-striped table-hover table-sm',
+
+        #Name of the function to use to style the table header row
+        [string]$HeaderStyle = 'headerStyle',
+
+        # Used for the columns Property
+        [string]$ColumnJson,
+
+        # Used for the data Property
+        [string]$DataJson
+
+    )
+
+    $ResultingJavaScript = [System.Text.StringBuilder]::new()
+    $ResultingJavaScript.AppendLine('<script>')
+    $ResultingJavaScript.AppendLine('  $(function() {')
+    $ResultingJavaScript.Append("    `$('")
+    $ResultingJavaScript.Append($TableId)
+    $ResultingJavaScript.AppendLine("').bootstrapTable({")
+    $ResultingJavaScript.AppendLine("      classes: '$Classes'")
+    $ResultingJavaScript.AppendLine("      headerStyle: '$HeaderStyle'")
+    $ResultingJavaScript.AppendLine("      columns: $ColumnJson")
+    $ResultingJavaScript.AppendLine("      data: $DataJson")
+    $ResultingJavaScript.AppendLine('    });')
+
+    ########
+    # Only one of these two blocks of 4 lines is needed, but I need to get the JavaScript working.  For now the template has these attributes hard-coded
+    $ResultingJavaScript.Append("    `$('")
+    $ResultingJavaScript.Append($TableId)
+    $ResultingJavaScript.Append("').attr(")
+    $ResultingJavaScript.AppendLine('"data-filter-control",true); //not working, but seems to result in same final element attributes so not sure why')
+
+    $ResultingJavaScript.Append("    //`$('")
+    $ResultingJavaScript.Append($TableId)
+    $ResultingJavaScript.Append("').prop(")
+    $ResultingJavaScript.AppendLine('"data-filter-control","true"); //does not work, and results in different final element attributes than when hard-coding the property into the HTML table')
+    #
+    ########
+
+    $ResultingJavaScript.AppendLine('  })')
+    $ResultingJavaScript.AppendLine('</script>')
+
+    return $ResultingJavaScript.ToString()
+
+}
 function ConvertTo-HtmlList {
     param (
         [Parameter(
@@ -429,12 +484,10 @@ function New-BootstrapReport {
             Outputs a complete HTML report as a string
         .EXAMPLE
             New-BootstrapReport -Title 'ReportTitle' -Description 'This is the report description' -Body 'This is the body of the report'
-        .NOTES
-            Author: Jeremy La Camera
-            Last Updated: 11/6/2016
     #>
     [CmdletBinding()]
     param(
+
         #Title of the report (displayed at the top)
         [String]$Title,
 
@@ -445,37 +498,47 @@ function New-BootstrapReport {
         [String[]]$Body,
 
         #The path to the HTML report template that includes the Boostrap CSS
-        [String]$TemplatePath = "$PSScriptRoot\data\Templates\ReportTemplate.html"
+        [String]$TemplatePath = "$PSScriptRoot\data\Templates\ReportTemplate.html",
+
+        [switch]$JavaScript,
+
+        #The path to the JavaScript (inside of <script> tags)
+        [String]$ScriptPath = "$PSScriptRoot\data\Templates\JavaScript.html",
+
+        [String]$AdditionalScriptHtml
+
     )
-    begin {
-        if ($PSBoundParameters.ContainsKey('TemplatePath')) {
-            [String]$Report = Get-Content $TemplatePath
-            if ($null -eq $Report) { Write-Host "$TemplatePath not loaded.  Failure.  Error." }
+
+    if ($PSBoundParameters.ContainsKey('TemplatePath')) {
+        [String]$Report = Get-Content $TemplatePath
+        if ($null -eq $Report) { Write-Warning "$TemplatePath not loaded.  Failure." }
+    } else {
+        [String]$Report = Get-BootstrapTemplate
+    }
+
+    if ($JavaScript) {
+        $ReportScript = Get-Content $ScriptPath
+        $ReportScript = "$ReportScript$AdditionalScriptHtml"
+    } else {
+        $ReportScript = $AdditionalScriptHtml
+    }
+
+    # Turn URLs into hyperlinks
+    $URLs = ($Body | Select-String -Pattern 'http[s]?:\/\/[^\s\"\<\>\#\%\{\}\|\\\^\~\[\]\`]*' -AllMatches).Matches.Value | Sort-Object -Unique
+    foreach ($URL in $URLs) {
+        if ($URL.Length -gt 50) {
+            $Body = $Body.Replace($URL, "<a href=$URL>$($URL[0..46] -join '')...</a>")
         } else {
-            [String]$Report = Get-BootstrapTemplate
+            $Body = $Body.Replace($URL, "<a href=$URL>$URL</a>")
         }
     }
-    process {
 
-        # Turn URLs into hyperlinks
-        $URLs = ($Body | Select-String -Pattern 'http[s]?:\/\/[^\s\"\<\>\#\%\{\}\|\\\^\~\[\]\`]*' -AllMatches).Matches.Value | Sort-Object -Unique
-        foreach ($URL in $URLs) {
-            if ($URL.Length -gt 50) {
-                $Body = $Body.Replace($URL, "<a href=$URL>$($URL[0..46] -join '')...</a>")
-            } else {
-                $Body = $Body.Replace($URL, "<a href=$URL>$URL</a>")
-            }
-        }
+    $Report = $Report -replace '_ReportTitle_', $Title
+    $Report = $Report -replace '_ReportDescription_', $Description
+    $Report = $Report -replace '_ReportBody_', $Body
+    $Report = $Report -replace '_ReportScript_', $ReportScript
 
-
-        $Report = $Report -replace '_ReportTitle_', $Title
-        $Report = $Report -replace '_ReportDescription_', $Description
-        $Report = $Report -replace '_ReportBody_', $Body
-
-    }
-    end {
-        Write-Output $Report
-    }
+    return $Report
 }
 Function New-BootstrapTable {
     <#
@@ -617,7 +680,8 @@ ForEach ($ThisFile in $CSharpFiles) {
     Add-Type -Path $ThisFile.FullName -ErrorAction Stop
 }
 #>
-Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
