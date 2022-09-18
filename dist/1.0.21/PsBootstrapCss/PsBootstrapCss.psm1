@@ -7,7 +7,8 @@ function ConvertTo-BootstrapJavaScriptTable {
         [string[]]$UnsortableColumn,
         [string[]]$SearchableColumn,
         [string[]]$DropdownColumn,
-        [switch]$AllColumnsSearchable
+        [switch]$AllColumnsSearchable,
+        [string[]]$PropNames
     )
 
     # Convert the arrays to hashtables for faster lookups
@@ -35,7 +36,9 @@ function ConvertTo-BootstrapJavaScriptTable {
     $null = $Stringbuilder.AppendLine('<thead>')
     $null = $Stringbuilder.AppendLine('<tr>')
 
-    $PropNames = ($InputObject | Get-Member -MemberType noteproperty).Name
+    if (-not $PSBoundParameters.ContainsKey('PropNames')) {
+        $PropNames = ($InputObject | Get-Member -MemberType noteproperty).Name
+    }
     ForEach ($Prop in $PropNames) {
         $null = $Stringbuilder.Append('<th')
         if ($DataFilterControl) {
@@ -716,6 +719,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

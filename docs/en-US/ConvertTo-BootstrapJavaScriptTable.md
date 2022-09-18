@@ -15,7 +15,7 @@ schema: 2.0.0
 ```
 ConvertTo-BootstrapJavaScriptTable [[-Id] <String>] [[-InputObject] <Object>] [-DataFilterControl]
  [[-UnsortableColumn] <String[]>] [[-SearchableColumn] <String[]>] [[-DropdownColumn] <String[]>]
- [-AllColumnsSearchable]
+ [-AllColumnsSearchable] [[-PropNames] <String[]>]
 ```
 
 ## DESCRIPTION
@@ -102,6 +102,21 @@ Aliases:
 
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PropNames
+{{ Fill PropNames Description }}
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
