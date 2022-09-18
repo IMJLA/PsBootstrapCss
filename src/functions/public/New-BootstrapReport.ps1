@@ -34,14 +34,14 @@ function New-BootstrapReport {
     )
 
     if ($PSBoundParameters.ContainsKey('TemplatePath')) {
-        [String]$Report = Get-Content $TemplatePath
+        [String]$Report = Get-Content $TemplatePath -Raw
         if ($null -eq $Report) { Write-Warning "$TemplatePath not loaded.  Failure." }
     } else {
         [String]$Report = Get-BootstrapTemplate
     }
 
     if ($JavaScript) {
-        [string]$ReportScript = Get-Content $ScriptPath
+        [string]$ReportScript = Get-Content $ScriptPath -Raw
         $ReportScript = "$ReportScript$AdditionalScriptHtml"
     } else {
         $ReportScript = $AdditionalScriptHtml
