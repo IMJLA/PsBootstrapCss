@@ -41,7 +41,7 @@ function New-BootstrapReport {
     }
 
     if ($JavaScript) {
-        $ReportScript = Get-Content $ScriptPath
+        [string]$ReportScript = Get-Content $ScriptPath
         $ReportScript = "$ReportScript$AdditionalScriptHtml"
     } else {
         $ReportScript = $AdditionalScriptHtml

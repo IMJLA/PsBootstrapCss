@@ -128,34 +128,34 @@ function ConvertTo-BootstrapTableScript {
 
     )
 
-    $ResultingJavaScript = [System.Text.StringBuilder]::new()
-    $ResultingJavaScript.AppendLine('<script>')
-    $ResultingJavaScript.AppendLine('  $(function() {')
-    $ResultingJavaScript.Append("    `$('")
-    $ResultingJavaScript.Append($TableId)
-    $ResultingJavaScript.AppendLine("').bootstrapTable({")
-    $ResultingJavaScript.AppendLine("      classes: '$Classes'")
-    $ResultingJavaScript.AppendLine("      headerStyle: '$HeaderStyle'")
-    $ResultingJavaScript.AppendLine("      columns: $ColumnJson")
-    $ResultingJavaScript.AppendLine("      data: $DataJson")
-    $ResultingJavaScript.AppendLine('    });')
+    $null = $ResultingJavaScript = [System.Text.StringBuilder]::new()
+    $null = $ResultingJavaScript.AppendLine('<script>')
+    $null = $ResultingJavaScript.AppendLine('  $(function() {')
+    $null = $ResultingJavaScript.Append("    `$('")
+    $null = $ResultingJavaScript.Append($TableId)
+    $null = $ResultingJavaScript.AppendLine("').bootstrapTable({")
+    $null = $ResultingJavaScript.AppendLine("      classes: '$Classes'")
+    $null = $ResultingJavaScript.AppendLine("      headerStyle: '$HeaderStyle'")
+    $null = $ResultingJavaScript.AppendLine("      columns: $ColumnJson")
+    $null = $ResultingJavaScript.AppendLine("      data: $DataJson")
+    $null = $ResultingJavaScript.AppendLine('    });')
 
     ########
     # Only one of these two blocks of 4 lines is needed, but I need to get the JavaScript working.  For now the template has these attributes hard-coded
-    $ResultingJavaScript.Append("    `$('")
-    $ResultingJavaScript.Append($TableId)
-    $ResultingJavaScript.Append("').attr(")
-    $ResultingJavaScript.AppendLine('"data-filter-control",true); //not working, but seems to result in same final element attributes so not sure why')
+    $null = $ResultingJavaScript.Append("    `$('")
+    $null = $ResultingJavaScript.Append($TableId)
+    $null = $ResultingJavaScript.Append("').attr(")
+    $null = $ResultingJavaScript.AppendLine('"data-filter-control",true); //not working, but seems to result in same final element attributes so not sure why')
 
-    $ResultingJavaScript.Append("    //`$('")
-    $ResultingJavaScript.Append($TableId)
-    $ResultingJavaScript.Append("').prop(")
-    $ResultingJavaScript.AppendLine('"data-filter-control","true"); //does not work, and results in different final element attributes than when hard-coding the property into the HTML table')
+    $null = $ResultingJavaScript.Append("    //`$('")
+    $null = $ResultingJavaScript.Append($TableId)
+    $null = $ResultingJavaScript.Append("').prop(")
+    $null = $ResultingJavaScript.AppendLine('"data-filter-control","true"); //does not work, and results in different final element attributes than when hard-coding the property into the HTML table')
     #
     ########
 
-    $ResultingJavaScript.AppendLine('  })')
-    $ResultingJavaScript.AppendLine('</script>')
+    $null = $ResultingJavaScript.AppendLine('  })')
+    $null = $ResultingJavaScript.AppendLine('</script>')
 
     return $ResultingJavaScript.ToString()
 
@@ -520,7 +520,7 @@ function New-BootstrapReport {
     }
 
     if ($JavaScript) {
-        $ReportScript = Get-Content $ScriptPath
+        [string]$ReportScript = Get-Content $ScriptPath
         $ReportScript = "$ReportScript$AdditionalScriptHtml"
     } else {
         $ReportScript = $AdditionalScriptHtml
@@ -685,6 +685,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
