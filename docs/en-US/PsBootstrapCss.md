@@ -2,7 +2,7 @@
 Module Name: PsBootstrapCss
 Module Guid: 86a3235a-083d-46f2-b3c6-3100418ae2c0
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.12
+Help Version: 1.0.13
 Locale: en-US
 ---
 
@@ -21,7 +21,7 @@ Upgrade a boring HTML list to a fancy Bootstrap list group
 
 ### [ConvertTo-BootstrapTableScript](ConvertTo-BootstrapTableScript.md)
 
-ConvertTo-BootstrapTableScript [-TableId] <string> [[-Classes] <string>] [[-HeaderStyle] <string>] [-ColumnJson] <string> [-DataJson] <string> [<CommonParameters>]
+ConvertTo-BootstrapTableScript [-TableId] <string> [-ColumnJson] <string> [-DataJson] <string> [[-Classes] <string>] [[-HeaderStyle] <string>] [<CommonParameters>]
 
 
 ### [ConvertTo-HtmlList](ConvertTo-HtmlList.md)

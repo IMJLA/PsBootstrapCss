@@ -112,19 +112,19 @@ function ConvertTo-BootstrapTableScript {
         [Parameter(Mandatory)]
         [string]$TableId,
 
-        # CSS classes to apply to the table
-        [string]$Classes = 'table table-striped table-hover table-sm',
-
-        #Name of the function to use to style the table header row
-        [string]$HeaderStyle = 'headerStyle',
-
         # Used for the columns Property
         [Parameter(Mandatory)]
         [string]$ColumnJson,
 
         # Used for the data Property
         [Parameter(Mandatory)]
-        [string]$DataJson
+        [string]$DataJson,
+
+        # CSS classes to apply to the table
+        [string]$Classes = 'table table-striped table-hover table-sm',
+
+        #Name of the function to use to style the table header row
+        [string]$HeaderStyle = 'headerStyle'
 
     )
 
@@ -685,6 +685,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

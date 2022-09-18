@@ -13,8 +13,8 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-ConvertTo-BootstrapTableScript [-TableId] <String> [[-Classes] <String>] [[-HeaderStyle] <String>]
- [-ColumnJson] <String> [-DataJson] <String> [<CommonParameters>]
+ConvertTo-BootstrapTableScript [-TableId] <String> [-ColumnJson] <String> [-DataJson] <String>
+ [[-Classes] <String>] [[-HeaderStyle] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,7 +40,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -55,7 +55,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 3
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -70,7 +70,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 4
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -85,7 +85,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
+Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

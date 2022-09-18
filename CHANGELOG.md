@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.13] - 2022-09-17 - updates
+
 ## [1.0.12] - 2022-09-17 - Added debug output to New-BootstrapReport
 
 ## [1.0.11] - 2022-09-17 - implemented convertto-bootstraptablescript

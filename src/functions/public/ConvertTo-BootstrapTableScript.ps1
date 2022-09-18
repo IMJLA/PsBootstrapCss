@@ -8,19 +8,19 @@ function ConvertTo-BootstrapTableScript {
         [Parameter(Mandatory)]
         [string]$TableId,
 
-        # CSS classes to apply to the table
-        [string]$Classes = 'table table-striped table-hover table-sm',
-
-        #Name of the function to use to style the table header row
-        [string]$HeaderStyle = 'headerStyle',
-
         # Used for the columns Property
         [Parameter(Mandatory)]
         [string]$ColumnJson,
 
         # Used for the data Property
         [Parameter(Mandatory)]
-        [string]$DataJson
+        [string]$DataJson,
+
+        # CSS classes to apply to the table
+        [string]$Classes = 'table table-striped table-hover table-sm',
+
+        #Name of the function to use to style the table header row
+        [string]$HeaderStyle = 'headerStyle'
 
     )
 
