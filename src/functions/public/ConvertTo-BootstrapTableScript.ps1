@@ -5,7 +5,8 @@ function ConvertTo-BootstrapTableScript {
     param (
 
         # ID of the table to format with the bootstrapTable() JavaScript method.
-        [string]$TableId = '#Folders',
+        [Parameter(Mandatory)]
+        [string]$TableId,
 
         # CSS classes to apply to the table
         [string]$Classes = 'table table-striped table-hover table-sm',
@@ -14,9 +15,11 @@ function ConvertTo-BootstrapTableScript {
         [string]$HeaderStyle = 'headerStyle',
 
         # Used for the columns Property
+        [Parameter(Mandatory)]
         [string]$ColumnJson,
 
         # Used for the data Property
+        [Parameter(Mandatory)]
         [string]$DataJson
 
     )

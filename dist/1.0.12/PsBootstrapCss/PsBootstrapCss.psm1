@@ -109,7 +109,8 @@ function ConvertTo-BootstrapTableScript {
     param (
 
         # ID of the table to format with the bootstrapTable() JavaScript method.
-        [string]$TableId = '#Folders',
+        [Parameter(Mandatory)]
+        [string]$TableId,
 
         # CSS classes to apply to the table
         [string]$Classes = 'table table-striped table-hover table-sm',
@@ -118,9 +119,11 @@ function ConvertTo-BootstrapTableScript {
         [string]$HeaderStyle = 'headerStyle',
 
         # Used for the columns Property
+        [Parameter(Mandatory)]
         [string]$ColumnJson,
 
         # Used for the data Property
+        [Parameter(Mandatory)]
         [string]$DataJson
 
     )
@@ -522,6 +525,7 @@ function New-BootstrapReport {
     } else {
         $ReportScript = $AdditionalScriptHtml
     }
+    Write-Debug $ReportScript
 
     # Turn URLs into hyperlinks
     $URLs = ($Body | Select-String -Pattern 'http[s]?:\/\/[^\s\"\<\>\#\%\{\}\|\\\^\~\[\]\`]*' -AllMatches).Matches.Value | Sort-Object -Unique
@@ -681,6 +685,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

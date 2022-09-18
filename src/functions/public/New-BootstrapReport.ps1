@@ -46,6 +46,7 @@ function New-BootstrapReport {
     } else {
         $ReportScript = $AdditionalScriptHtml
     }
+    Write-Debug $ReportScript
 
     # Turn URLs into hyperlinks
     $URLs = ($Body | Select-String -Pattern 'http[s]?:\/\/[^\s\"\<\>\#\%\{\}\|\\\^\~\[\]\`]*' -AllMatches).Matches.Value | Sort-Object -Unique
