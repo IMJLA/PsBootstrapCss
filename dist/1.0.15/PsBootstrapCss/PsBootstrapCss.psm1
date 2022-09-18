@@ -1,3 +1,196 @@
+
+function ConvertTo-BootstrapJavaScriptTable {
+    param (
+        [string]$Id,
+        $InputObject,
+        [switch]$DataFilterControl,
+        [string[]]$UnsortableColumn,
+        [string[]]$SearchableColumn,
+        [string[]]$DropdownColumn,
+        [switch]$AllColumnsSearchable
+    )
+
+    # Convert the arrays to hashtables for faster lookups
+    $UnsortableColumns = @{}
+    ForEach ($Col in $UnsortableColumn) {
+        $UnsortableColumns[$Col] = $null
+    }
+    $SearchableColumns = @{}
+    ForEach ($Col in $SearchableColumn) {
+        $SearchableColumns[$Col] = $null
+    }
+    $DropdownColumns = @{}
+    ForEach ($Col in $DropdownColumn) {
+        $DropdownColumns[$Col] = $null
+    }
+
+    $Stringbuilder = [System.Text.StringBuilder]::new()
+    $null = $Stringbuilder.Append('<table id="')
+    $null = $Stringbuilder.Append($Id)
+    $null = $Stringbuilder.Append('"')
+    if ($DataFilterControl) {
+        $null = $Stringbuilder.Append(' data-filter-control="true"')
+    }
+    $null = $Stringbuilder.AppendLine('>')
+    $null = $Stringbuilder.AppendLine('<thead>')
+    $null = $Stringbuilder.AppendLine('<tr>')
+
+    $PropNames = ($InputObject | Get-Member -MemberType noteproperty).Name
+    ForEach ($Prop in $PropNames) {
+        $null = $Stringbuilder.Append('<th')
+        if ($DataFilterControl) {
+            $null = $Stringbuilder.Append(' data-field="')
+            $null = $Stringbuilder.Append(($Prop -replace '\s', ''))
+            $null = $Stringbuilder.Append('"')
+        }
+        if ($DataFilterControl) {
+            if ($SearchableColumns.ContainsKey($Prop) -or $AllColumnsSearchable) {
+                $null = $Stringbuilder.Append(' data-filter-control="input"')
+            }
+            if ($DropdownColumns.ContainsKey($Prop)) {
+                $null = $Stringbuilder.Append(' data-filter-control="select"')
+            }
+        }
+        if (-not $UnsortableColumns.ContainsKey($Prop)) {
+            $null = $Stringbuilder.Append(' data-sortable="true"')
+        }
+        $null = $Stringbuilder.Append('>')
+        $null = $Stringbuilder.Append($Prop)
+        $null = $Stringbuilder.AppendLine('</th>')
+    }
+    $null = $Stringbuilder.AppendLine('</tr>')
+    $null = $Stringbuilder.AppendLine('</thead>')
+    $null = $Stringbuilder.AppendLine('</table>')
+    $Stringbuilder.ToString()
+}
+Function ConvertTo-BootstrapListGroup {
+    <#
+        .SYNOPSIS
+            Upgrade a boring HTML list to a fancy Bootstrap list group
+        .DESCRIPTION
+            Applies the Bootstrap 'list-group' CSS class to an HTML list
+            Applies the Bootstrap 'list-group-item' CSS class to each list item
+        .OUTPUTS
+            A string wih the code for the Bootstrap list
+        .EXAMPLE
+            1,2,3 |
+            ConvertTo-HtmlList |
+            ConvertTo-BootstrapListGroup
+
+            This example returns the following string:
+            '<ul class ="list-group"><li class ="list-group-item>1</li><li class ="list-group-item>2</li><li class ="list-group-item>3</li></ul>'
+    #>
+    [OutputType([System.String])]
+    [CmdletBinding()]
+    param(
+        #The HTML table to apply the Bootstrap striped table CSS class to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [System.String[]]$HtmlList
+    )
+    process {
+        ForEach ($List in $HtmlList) {
+
+            $List -replace
+            '<ul>', '<ul class="list-group">' -replace
+            '<ol>', '<ol class="list-group">' -replace
+            '<li>', '<li class ="list-group-item">'
+
+        }
+    }
+}
+
+
+function ConvertTo-BootstrapTableScript {
+
+    param (
+
+        # ID of the table to format with the bootstrapTable() JavaScript method.
+        [Parameter(Mandatory)]
+        [string]$TableId,
+
+        # Used for the columns Property
+        [Parameter(Mandatory)]
+        [string]$ColumnJson,
+
+        # Used for the data Property
+        [Parameter(Mandatory)]
+        [string]$DataJson,
+
+        # CSS classes to apply to the table
+        [string]$Classes = 'table table-striped table-hover table-sm',
+
+        #Name of the function to use to style the table header row
+        [string]$HeaderStyle = 'headerStyle'
+
+    )
+
+    $null = $ResultingJavaScript = [System.Text.StringBuilder]::new()
+    $null = $ResultingJavaScript.AppendLine('<script>')
+    $null = $ResultingJavaScript.AppendLine('  $(function() {')
+    $null = $ResultingJavaScript.Append("    `$('")
+    $null = $ResultingJavaScript.Append($TableId)
+    $null = $ResultingJavaScript.AppendLine("').bootstrapTable({")
+    $null = $ResultingJavaScript.AppendLine("      classes: '$Classes'")
+    $null = $ResultingJavaScript.AppendLine("      headerStyle: '$HeaderStyle'")
+    $null = $ResultingJavaScript.AppendLine("      columns: $ColumnJson")
+    $null = $ResultingJavaScript.AppendLine("      data: $DataJson")
+    $null = $ResultingJavaScript.AppendLine('    });')
+
+    ########
+    # Only one of these two blocks of 4 lines is needed, but I need to get the JavaScript working.  For now the template has these attributes hard-coded
+    $null = $ResultingJavaScript.Append("    `$('")
+    $null = $ResultingJavaScript.Append($TableId)
+    $null = $ResultingJavaScript.Append("').attr(")
+    $null = $ResultingJavaScript.AppendLine('"data-filter-control",true); //not working, but seems to result in same final element attributes so not sure why')
+
+    $null = $ResultingJavaScript.Append("    //`$('")
+    $null = $ResultingJavaScript.Append($TableId)
+    $null = $ResultingJavaScript.Append("').prop(")
+    $null = $ResultingJavaScript.AppendLine('"data-filter-control","true"); //does not work, and results in different final element attributes than when hard-coding the property into the HTML table')
+    #
+    ########
+
+    $null = $ResultingJavaScript.AppendLine('  })')
+    $null = $ResultingJavaScript.AppendLine('</script>')
+
+    return $ResultingJavaScript.ToString()
+
+}
+function ConvertTo-HtmlList {
+    param (
+        [Parameter(
+            Mandatory = $true,
+            Position = 0,
+            ValueFromPipeline = $true
+        )]
+        [string[]]$InputObject,
+        [switch]$Ordered
+    )
+    begin {
+
+        if ($Ordered) {
+            $ListType = 'ol'
+        } else {
+            $ListType = 'ul'
+        }
+
+        $StringBuilder = [System.Text.StringBuilder]::new("<$ListType>")
+
+    }
+    process {
+        ForEach ($ThisObject in $InputObject) {
+            $null = $StringBuilder.Append("<li>$ThisObject</li>")
+        }
+    }
+    end {
+        $null = $StringBuilder.Append("</$ListType>")
+        $StringBuilder.ToString()
+    }
+}
 function Get-BootstrapTemplate {
     @"
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -39,3 +232,495 @@ function Get-BootstrapTemplate {
 
 "@
 }
+function New-BootstrapAlert {
+    <#
+        .SYNOPSIS
+            Creates a new HTML div that uses the Bootstrap alert class
+        .DESCRIPTION
+            Creates a new HTML div that uses the Bootstrap alert class
+        .OUTPUTS
+            A string wih the HTML code for the div
+        .EXAMPLE
+            New-BootstrapAlert -Text 'blah'
+
+            This example returns the following string:
+            '<div class="alert alert-info"><strong>Info!</strong> blah</div>'
+    #>
+    [CmdletBinding()]
+    param(
+        #The HTML element to apply the Bootstrap column to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [string[]]$Text,
+
+        [Parameter(
+            Position = 1
+        )]
+        [string]$Class = 'Info'
+    )
+    begin{}
+    process{
+        ForEach ($String in $Text) {
+            #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
+            "<div class=`"alert alert-$($Class.ToLower())`">$String</div>"
+        }
+    }
+    end{}
+    
+}
+function New-BootstrapColumn {
+    <#
+        .SYNOPSIS
+            Wraps HTML elements in a Bootstrap column of the specified width
+        .DESCRIPTION
+            Creates a Bootstrap container which contains a row which contains a column of the specified width
+        .OUTPUTS
+            A string wih the code for the Bootstrap container
+        .EXAMPLE
+            New-BootstrapColumn -Html '<h1>Heading</h1>'
+
+            This example returns the following string:
+            '<div class="container"><div class="row justify-content-md-center"><div class="col col-lg-12"><h1>Heading</h1></div></div></div>'
+    #>
+    [OutputType([System.String])]
+    [CmdletBinding()]
+    param(
+        #The HTML element to apply the Bootstrap column to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [System.String[]]$Html,
+
+        [Parameter(
+            Position = 1
+        )]
+        [Int]$Width = 12
+    )
+    begin {
+        $NewHtml = "<div class=`"container`"><div class=`"row justify-content-md-center`">"
+    }
+    process {
+        ForEach ($OldHtml in $Html) {
+            $NewHtml = "$NewHtml<div class=`"col col-lg-$Width`">$OldHtml</div>"
+        }
+    }
+    end {
+        $NewHtml = "$NewHtml</div></div>"
+        return $NewHtml
+    }
+}
+function New-BootstrapDiv {
+    <#
+        .SYNOPSIS
+            Creates a new HTML div that uses the Bootstrap alert class
+        .DESCRIPTION
+            Creates a new HTML div that uses the Bootstrap alert class
+        .OUTPUTS
+            A string wih the HTML code for the div
+        .EXAMPLE
+            New-BootstrapAlert -Text 'blah'
+
+            This example returns the following string:
+            '<div class="alert alert-info"><strong>Info!</strong> blah</div>'
+    #>
+    [CmdletBinding()]
+    param(
+        #The HTML element to apply the Bootstrap column to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [string[]]$Text,
+
+        [Parameter(
+            Position = 1
+        )]
+        [string]$Class = 'h-100 p-1 bg-light border rounded-3'
+    )
+    begin{}
+    process{
+        ForEach ($String in $Text) {
+            #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
+            "<div class=`"alert alert-$($Class.ToLower())`">$String</div>"
+        }
+    }
+    end{}
+    
+}
+function New-BootstrapDivWithHeading {
+    param (
+        [string]$HeadingText,
+        [uint16]$HeadingLevel = 5,
+        [string]$Content,
+        [hashtable]$HeadingsAndContent
+    )
+
+    if ($PSBoundParameters.ContainsKey('HeadingsAndContent')) {
+        [string]$Text = ForEach ($Key in $HeadingsAndContent.Keys) {
+            (New-HtmlHeading $Key -Level $HeadingLevel) +
+            $HeadingsAndContent[$Key]
+        }
+    } else {
+        $Text = (New-HtmlHeading $HeadingText -Level $HeadingLevel) +
+        $Content
+    }
+
+    New-BootstrapDiv -Text $Text
+}
+function New-BootstrapGrid {
+    <#
+        .SYNOPSIS
+            Wraps HTML elements in a Bootstrap column of the specified width
+        .DESCRIPTION
+            Creates a Bootstrap container which contains a row which contains a column of the specified width
+        .OUTPUTS
+            A string wih the code for the Bootstrap container
+        .EXAMPLE
+            New-BootstrapColumn -Html '<h1>Heading</h1>'
+
+            This example returns the following string:
+            '<div class="container"><div class="row justify-content-md-center"><div class="col col-lg-12"><h1>Heading</h1></div></div></div>'
+    #>
+    [CmdletBinding()]
+    param(
+        #The HTML element to apply the Bootstrap column to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [System.String[]]$Html,
+
+        [string]$Justify = 'Center'
+    )
+    begin{
+        $String = @()
+        [decimal]$ExactWidth = 12 / ($Html | Measure-Object).Count
+        [int]$Width = [Math]::Floor($ExactWidth)
+        $String += "<div class=`"container`"><div class=`"row justify-content-md-$($Justify.ToLower())`">"
+    }
+    process{
+        ForEach ($OldHtml in $Html) {
+            $String += "<div class=`"col col-lg-$Width`">$OldHtml</div>"
+        }
+    }
+    end{
+        $String += "</div></div>"
+        $String -join ''
+    }
+    
+}
+Function New-BootstrapList {
+    <#
+        .SYNOPSIS
+            Upgrade a boring HTML unordered list to a fancy Bootstrap list group
+        .DESCRIPTION
+            Applies the Bootstrap 'table table-striped' class to an HTML table
+        .OUTPUTS
+            A string wih the code for the Bootstrap table
+        .EXAMPLE
+            New-BootstrapTable -HtmlTable '<table><tr><th>Name</th><th>Id</th></tr><tr><td>ALMon</td><td>5540</td></tr></table>'
+
+            This example returns the following string:
+            '<table class="table table-striped"><tr><th>Name</th><th>Id</th></tr><tr><td>ALMon</td><td>5540</td></tr></table>'
+        .NOTES
+            Author: Jeremy La Camera
+            Last Updated: 11/6/2016
+    #>
+    [CmdletBinding()]
+    param(
+        #The HTML table to apply the Bootstrap striped table CSS class to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [System.String[]]$HtmlTable
+    )
+    begin{}
+    process{
+        ForEach ($Table in $HtmlTable) {
+            [String]$NewTable = $Table -replace '<table>','<table class="table table-striped">'
+            Write-Output $NewTable
+        }
+    }
+    end{}
+}
+function New-BootstrapPanel {
+    <#
+        .SYNOPSIS
+            Wraps HTML elements in a Bootstrap column of the specified width
+        .DESCRIPTION
+            Creates a Bootstrap container which contains a row which contains a column of the specified width
+        .OUTPUTS
+            A string wih the code for the Bootstrap container
+        .EXAMPLE
+            New-BootstrapColumn -Html '<h1>Heading</h1>'
+
+            This example returns the following string:
+            '<div class="container"><div class="row justify-content-md-center"><div class="col col-lg-12"><h1>Heading</h1></div></div></div>'
+    #>
+    [CmdletBinding()]
+    param(
+        #The HTML element to apply the Bootstrap column to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [System.String[]]$Html,
+
+        [string]$Class = 'default',
+
+        [string]$Heading,
+
+        [string]$Footer
+    )
+    begin{
+        $String = @()
+        $String += "<div class=`"panel panel-$($Class.ToLower())`">"
+        if ($Heading) {
+            $String += "<div class=`"panel-heading`">$Heading</div>"
+        }
+    }
+    process{
+        ForEach ($OldHtml in $Html) {
+            $String += "<div class=`"panel-body`">$OldHtml</div>"
+        }
+    }
+    end{
+        if ($Footer) {
+            $String += "<div class=`"panel-footer`">$Footer</div>"
+        }
+        $String += "</div>"
+        $String -join ''
+    }
+    
+}
+function New-BootstrapReport {
+    <#
+        .SYNOPSIS
+            Build a new Bootstrap report based on an HTML template
+        .DESCRIPTION
+            Inserts the specified title, description, and body into the HTML report template
+        .OUTPUTS
+            Outputs a complete HTML report as a string
+        .EXAMPLE
+            New-BootstrapReport -Title 'ReportTitle' -Description 'This is the report description' -Body 'This is the body of the report'
+    #>
+    [CmdletBinding()]
+    param(
+
+        #Title of the report (displayed at the top)
+        [String]$Title,
+
+        #Description of the report (displayed below the Title)
+        [String]$Description,
+
+        #Body of the report (tables, list groups, etc.)
+        [String[]]$Body,
+
+        #The path to the HTML report template that includes the Boostrap CSS
+        [String]$TemplatePath = "$PSScriptRoot\data\Templates\ReportTemplate.html",
+
+        [switch]$JavaScript,
+
+        #The path to the JavaScript (inside of <script> tags)
+        [String]$ScriptPath = "$PSScriptRoot\data\Templates\JavaScript.html",
+
+        [String]$AdditionalScriptHtml
+
+    )
+
+    if ($PSBoundParameters.ContainsKey('TemplatePath')) {
+        [String]$Report = Get-Content $TemplatePath
+        if ($null -eq $Report) { Write-Warning "$TemplatePath not loaded.  Failure." }
+    } else {
+        [String]$Report = Get-BootstrapTemplate
+    }
+
+    if ($JavaScript) {
+        [string]$ReportScript = Get-Content $ScriptPath
+        $ReportScript = "$ReportScript$AdditionalScriptHtml"
+    } else {
+        $ReportScript = $AdditionalScriptHtml
+    }
+    Write-Debug $ReportScript
+
+    # Turn URLs into hyperlinks
+    $URLs = ($Body | Select-String -Pattern 'http[s]?:\/\/[^\s\"\<\>\#\%\{\}\|\\\^\~\[\]\`]*' -AllMatches).Matches.Value | Sort-Object -Unique
+    foreach ($URL in $URLs) {
+        if ($URL.Length -gt 50) {
+            $Body = $Body.Replace($URL, "<a href=$URL>$($URL[0..46] -join '')...</a>")
+        } else {
+            $Body = $Body.Replace($URL, "<a href=$URL>$URL</a>")
+        }
+    }
+
+    $Report = $Report -replace '_ReportTitle_', $Title
+    $Report = $Report -replace '_ReportDescription_', $Description
+    $Report = $Report -replace '_ReportBody_', $Body
+    $Report = $Report -replace '_ReportScript_', $ReportScript
+
+    return $Report
+}
+Function New-BootstrapTable {
+    <#
+        .SYNOPSIS
+            Upgrade a boring HTML table to a fancy Bootstrap table
+        .DESCRIPTION
+            Applies the Bootstrap 'table table-striped' class to an HTML table
+        .OUTPUTS
+            A string wih the code for the Bootstrap table
+        .EXAMPLE
+            New-BootstrapTable -HtmlTable '<table><tr><th>Name</th><th>Id</th></tr><tr><td>ALMon</td><td>5540</td></tr></table>'
+
+            This example returns the following string:
+            '<table class="table table-striped"><tr><th>Name</th><th>Id</th></tr><tr><td>ALMon</td><td>5540</td></tr></table>'
+        .NOTES
+            Author: Jeremy La Camera
+            Last Updated: 11/6/2016
+    #>
+    [CmdletBinding()]
+    param(
+        #The HTML table to apply the Bootstrap striped table CSS class to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [System.String[]]$HtmlTable
+    )
+    begin{}
+    process{
+        ForEach ($Table in $HtmlTable) {
+            [String]$NewTable = $Table -replace '<table>','<table class="table table-striped">'
+            Write-Output $NewTable
+        }
+    }
+    end{}
+}
+function New-HtmlAnchor{
+    <#
+        .SYNOPSIS
+            Build a new HTML anchor
+        .DESCRIPTION
+            Inserts the specified HTML element into an HTML anchor with the specified name
+        .OUTPUTS
+            Outputs the heading as a string
+        .EXAMPLE
+            New-HtmlAnchor -Element "<h1>SampleHeader</h1>" -Name "AnchorToSampleHeader"
+    #>
+    [CmdletBinding()]
+    param(
+
+        #The text of the heading
+        [Parameter(
+            Position=0,
+            ValueFromPipeline=$true,
+            Mandatory=$true
+        )]
+        [String[]]$Element,
+
+        #The heading level to generate (New-HtmlHeading can create h1, h2, h3, h4, h5, or h6 tags)
+        [Parameter(Mandatory)]
+        [String]$Name
+
+    )
+    begin{}
+    process{
+        Write-Output "<h$Level>$Text</h$Level>"
+    }
+    end{}
+}
+function New-HtmlHeading{
+    <#
+        .SYNOPSIS
+            Build a new HTML heading
+        .DESCRIPTION
+            Inserts the specified text into an HTML heading of the specified level
+        .OUTPUTS
+            Outputs the heading as a string
+        .EXAMPLE
+            New-HtmlHeading -Text 'Example Heading'
+    #>
+    [CmdletBinding()]
+    param(
+
+        #The text of the heading
+        [Parameter(
+            Position=0,
+            ValueFromPipeline=$True
+        )]
+        [String[]]$Text,
+
+        #The heading level to generate (New-HtmlHeading can create h1, h2, h3, h4, h5, or h6 tags)
+        [ValidateRange(1,6)]
+        [Int16]$Level = 1
+
+    )
+    begin{}
+    process{
+        Write-Output "<h$Level>$Text</h$Level>"
+    }
+    end{}
+}
+function New-HtmlParagraph {
+    <#
+        .SYNOPSIS
+            Build a new HTML heading
+        .DESCRIPTION
+            Inserts the specified text into an HTML heading of the specified level
+        .OUTPUTS
+            Outputs the heading as a string
+        .EXAMPLE
+            New-HtmlHeading -Text 'Example Heading'
+    #>
+    [CmdletBinding()]
+    param(
+
+        #The text of the heading
+        [Parameter(
+            Position=0,
+            ValueFromPipeline=$True
+        )]
+        [String[]]$Text,
+
+        #The heading level to generate (New-HtmlHeading can create h1, h2, h3, h4, h5, or h6 tags)
+        [ValidateRange(1,6)]
+        [Int16]$Level = 1
+
+    )
+    begin{}
+    process{
+        Write-Output "<h$Level>$Text</h$Level>"
+    }
+    end{}
+}
+<#
+# Add any custom C# classes as usable (exported) types
+$CSharpFiles = Get-ChildItem -Path "$PSScriptRoot\*.cs"
+ForEach ($ThisFile in $CSharpFiles) {
+    Add-Type -Path $ThisFile.FullName -ErrorAction Stop
+}
+#>
+Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
+
+
+
+
+
+
+
+
+
+
+
+
