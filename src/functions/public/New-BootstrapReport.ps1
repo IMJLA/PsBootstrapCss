@@ -58,10 +58,15 @@ function New-BootstrapReport {
         }
     }
 
-    $Report = $Report -replace [regex]::escape('_ReportTitle_'), $Title
-    $Report = $Report -replace [regex]::escape('_ReportDescription_'), $Description
-    $Report = $Report -replace [regex]::escape('_ReportBody_'), $Body
-    $Report = $Report -replace [regex]::escape('_ReportScript_'), $ReportScript
+    $Report = $Report.Replace('_ReportTitle_', $Title)
+    $Report = $Report.Replace('_ReportDescription_', $Description)
+    $Report = $Report.Replace('_ReportBody_', $Body)
+    $Report = $Report.Replace('_ReportScript_', $ReportScript)
+
+    #$Report = $Report -replace [regex]::escape('_ReportTitle_'), $Title
+    #$Report = $Report -replace [regex]::escape('_ReportDescription_'), $Description
+    #$Report = $Report -replace [regex]::escape('_ReportBody_'), $Body
+    #$Report = $Report -replace [regex]::escape('_ReportScript_'), $ReportScript
 
     return $Report
 }

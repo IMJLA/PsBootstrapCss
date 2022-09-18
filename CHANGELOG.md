@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.20] - 2022-09-18 - troubleshooting bug with -replace in New-BootstrapReport
+
 ## [1.0.19] - 2022-09-18 - bugfix in new-bootstrapreport
 
 ## [1.0.18] - 2022-09-18 - bugfix needed -raw param on get-content in new-bootstrapreport
