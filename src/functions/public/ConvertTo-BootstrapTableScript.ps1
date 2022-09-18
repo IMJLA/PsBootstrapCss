@@ -30,9 +30,9 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.Append("    `$('")
     $null = $ResultingJavaScript.Append($TableId)
     $null = $ResultingJavaScript.AppendLine("').bootstrapTable({")
-    $null = $ResultingJavaScript.AppendLine("      classes: '$Classes'")
-    $null = $ResultingJavaScript.AppendLine("      headerStyle: '$HeaderStyle'")
-    $null = $ResultingJavaScript.AppendLine("      columns: $ColumnJson")
+    $null = $ResultingJavaScript.AppendLine("      classes: '$Classes',")
+    $null = $ResultingJavaScript.AppendLine("      headerStyle: '$HeaderStyle',")
+    $null = $ResultingJavaScript.AppendLine("      columns: $ColumnJson,")
     $null = $ResultingJavaScript.AppendLine("      data: $DataJson")
     $null = $ResultingJavaScript.AppendLine('    });')
 

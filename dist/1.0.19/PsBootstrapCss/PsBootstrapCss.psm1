@@ -134,9 +134,9 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.Append("    `$('")
     $null = $ResultingJavaScript.Append($TableId)
     $null = $ResultingJavaScript.AppendLine("').bootstrapTable({")
-    $null = $ResultingJavaScript.AppendLine("      classes: '$Classes'")
-    $null = $ResultingJavaScript.AppendLine("      headerStyle: '$HeaderStyle'")
-    $null = $ResultingJavaScript.AppendLine("      columns: $ColumnJson")
+    $null = $ResultingJavaScript.AppendLine("      classes: '$Classes',")
+    $null = $ResultingJavaScript.AppendLine("      headerStyle: '$HeaderStyle',")
+    $null = $ResultingJavaScript.AppendLine("      columns: $ColumnJson,")
     $null = $ResultingJavaScript.AppendLine("      data: $DataJson")
     $null = $ResultingJavaScript.AppendLine('    });')
 
@@ -563,10 +563,10 @@ function New-BootstrapReport {
         }
     }
 
-    $Report = $Report -replace '_ReportTitle_', $Title
-    $Report = $Report -replace '_ReportDescription_', $Description
-    $Report = $Report -replace '_ReportBody_', $Body
-    $Report = $Report -replace '_ReportScript_', $ReportScript
+    $Report = $Report -replace [regex]::escape('_ReportTitle_'), $Title
+    $Report = $Report -replace [regex]::escape('_ReportDescription_'), $Description
+    $Report = $Report -replace [regex]::escape('_ReportBody_'), $Body
+    $Report = $Report -replace [regex]::escape('_ReportScript_'), $ReportScript
 
     return $Report
 }
@@ -711,6 +711,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
