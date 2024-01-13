@@ -13,7 +13,8 @@ Build a new HTML heading
 ## SYNTAX
 
 ```
-New-HtmlParagraph [[-Text] <String[]>] [-Level <Int16>] [<CommonParameters>]
+New-HtmlParagraph [[-Text] <String[]>] [-Level <Int16>] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,6 +40,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: 1
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: System.Management.Automation.ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

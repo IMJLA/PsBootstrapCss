@@ -13,7 +13,7 @@ Upgrade a boring HTML table to a fancy Bootstrap table
 ## SYNTAX
 
 ```
-New-BootstrapTable [[-HtmlTable] <String[]>] [<CommonParameters>]
+New-BootstrapTable [[-HtmlTable] <String[]>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,6 +43,21 @@ Required: False
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: System.Management.Automation.ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

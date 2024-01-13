@@ -13,7 +13,8 @@ Creates a new HTML div that uses the Bootstrap alert class
 ## SYNTAX
 
 ```
-New-BootstrapDiv [[-Text] <String[]>] [[-Class] <String>] [<CommonParameters>]
+New-BootstrapDiv [[-Text] <String[]>] [[-Class] <String>] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,6 +43,21 @@ Aliases:
 Required: False
 Position: 2
 Default value: H-100 p-1 bg-light border rounded-3
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: System.Management.Automation.ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

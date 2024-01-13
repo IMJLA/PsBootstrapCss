@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.23] - 2024-01-13 - Commented unnecessary debug output in New-BootstrapReport line 49
+
 ## [1.0.22] - 2022-10-16 - added javascript param to bootstrapreport
 
 ## [1.0.21] - 2022-09-18 - feature to specify property names for convertto-bootstrapjavascripttable
