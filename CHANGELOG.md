@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.26] - 2024-01-14 - removed accidental changes to get-bootstraptemplate
+
 ## [1.0.25] - 2024-01-14 - changed get-javascript to a single-quote here string
 
 ## [1.0.24] - 2024-01-14 - Templated JavaScript is now loaded from a Command in a Module rather than a .html file, just like the Templated Bootstrap
