@@ -115,7 +115,7 @@ Aliases:
 
 Required: False
 Position: 5
-Default value: "$PSScriptRoot\data\Templates\JavaScript.html"
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -130,7 +130,7 @@ Aliases:
 
 Required: False
 Position: 4
-Default value: "$PSScriptRoot\data\Templates\ReportTemplate.html"
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

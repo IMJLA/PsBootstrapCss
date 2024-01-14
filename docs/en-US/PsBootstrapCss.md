@@ -1,8 +1,8 @@
 ---
 Module Name: PsBootstrapCss
-Module Guid: 86a3235a-083d-46f2-b3c6-3100418ae2c0
+Module Guid: 86a3235a-083d-46f2-b3c6-3100418ae2c0 86a3235a-083d-46f2-b3c6-3100418ae2c0
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.23
+Help Version: 1.0.25
 Locale: en-US
 ---
 
@@ -31,7 +31,12 @@ ConvertTo-HtmlList [-InputObject] <string[]> [-Ordered] [<CommonParameters>]
 
 ### [Get-BootstrapTemplate](Get-BootstrapTemplate.md)
 
-Get-BootstrapTemplate 
+Get-BootstrapTemplate [-NoJavaScript]
+
+
+### [Get-JavaScript](Get-JavaScript.md)
+
+Get-JavaScript 
 
 
 ### [New-BootstrapAlert](New-BootstrapAlert.md)

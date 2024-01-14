@@ -22,12 +22,12 @@ function New-BootstrapReport {
         [String[]]$Body,
 
         #The path to the HTML report template that includes the Boostrap CSS
-        [String]$TemplatePath = "$PSScriptRoot\data\Templates\ReportTemplate.html",
+        [String]$TemplatePath,
 
         [switch]$JavaScript,
 
         #The path to the JavaScript (inside of <script> tags)
-        [String]$ScriptPath = "$PSScriptRoot\data\Templates\JavaScript.html",
+        [String]$ScriptPath,
 
         [String]$AdditionalScriptHtml
 
@@ -41,12 +41,11 @@ function New-BootstrapReport {
     }
 
     if ($JavaScript) {
-        [string]$ReportScript = Get-Content $ScriptPath -Raw
+        [string]$ReportScript = Get-JavaScript
         $ReportScript = "$ReportScript$AdditionalScriptHtml"
     } else {
         $ReportScript = $AdditionalScriptHtml
     }
-    #Write-Debug $ReportScript
 
     # Turn URLs into hyperlinks
     $URLs = ($Body | Select-String -Pattern 'http[s]?:\/\/[^\s\"\<\>\#\%\{\}\|\\\^\~\[\]\`]*' -AllMatches).Matches.Value | Sort-Object -Unique
@@ -62,11 +61,6 @@ function New-BootstrapReport {
     $Report = $Report.Replace('_ReportDescription_', $Description)
     $Report = $Report.Replace('_ReportBody_', $Body)
     $Report = $Report.Replace('_ReportScript_', $ReportScript)
-
-    #$Report = $Report -replace [regex]::escape('_ReportTitle_'), $Title
-    #$Report = $Report -replace [regex]::escape('_ReportDescription_'), $Description
-    #$Report = $Report -replace [regex]::escape('_ReportBody_'), $Body
-    #$Report = $Report -replace [regex]::escape('_ReportScript_'), $ReportScript
 
     return $Report
 }

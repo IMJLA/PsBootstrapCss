@@ -1,3 +1,5 @@
+function Get-JavaScript {
+    @'
 		<script>
 			//src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"
 			/*! jQuery v3.6.1 | (c) OpenJS Foundation and other contributors | jquery.org/license */
@@ -48,4 +50,5 @@
 				}
 			}
 		</script>
-		
+'@
+}
