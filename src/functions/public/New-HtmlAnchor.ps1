@@ -1,4 +1,4 @@
-function New-HtmlAnchor{
+function New-HtmlAnchor {
     <#
         .SYNOPSIS
             Build a new HTML anchor
@@ -14,9 +14,9 @@ function New-HtmlAnchor{
 
         #The text of the heading
         [Parameter(
-            Position=0,
-            ValueFromPipeline=$true,
-            Mandatory=$true
+            Position = 0,
+            ValueFromPipeline = $true,
+            Mandatory = $true
         )]
         [String[]]$Element,
 
@@ -25,9 +25,9 @@ function New-HtmlAnchor{
         [String]$Name
 
     )
-    begin{}
-    process{
+    begin {}
+    process {
         Write-Output "<h$Level>$Text</h$Level>"
     }
-    end{}
+    end {}
 }

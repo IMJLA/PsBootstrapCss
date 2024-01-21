@@ -1,4 +1,4 @@
-function New-HtmlHeading{
+function New-HtmlHeading {
     <#
         .SYNOPSIS
             Build a new HTML heading
@@ -14,19 +14,19 @@ function New-HtmlHeading{
 
         #The text of the heading
         [Parameter(
-            Position=0,
-            ValueFromPipeline=$True
+            Position = 0,
+            ValueFromPipeline = $True
         )]
         [String[]]$Text,
 
         #The heading level to generate (New-HtmlHeading can create h1, h2, h3, h4, h5, or h6 tags)
-        [ValidateRange(1,6)]
+        [ValidateRange(1, 6)]
         [Int16]$Level = 1
 
     )
-    begin{}
-    process{
+    begin {}
+    process {
         Write-Output "<h$Level>$Text</h$Level>"
     }
-    end{}
+    end {}
 }

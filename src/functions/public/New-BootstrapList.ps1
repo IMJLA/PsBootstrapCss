@@ -25,12 +25,12 @@ Function New-BootstrapList {
         )]
         [System.String[]]$HtmlTable
     )
-    begin{}
-    process{
+    begin {}
+    process {
         ForEach ($Table in $HtmlTable) {
-            [String]$NewTable = $Table -replace '<table>','<table class="table table-striped">'
+            [String]$NewTable = $Table -replace '<table>', '<table class="table table-striped">'
             Write-Output $NewTable
         }
     }
-    end{}
+    end {}
 }

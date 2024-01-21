@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.28] - 2024-01-20 - added spaces where needed to match the powershell-parsed module definition retrieved by get-module. this was causing gif diffs in export-permissionportable
+
+## [1.0.27] - 2024-01-20 - added spaces where needed to match the powershell-parsed module definition retrieved by get-module. this was causing gif diffs in export-permissionportable
+
 ## [1.0.26] - 2024-01-14 - removed accidental changes to get-bootstraptemplate
 
 ## [1.0.25] - 2024-01-14 - changed get-javascript to a single-quote here string

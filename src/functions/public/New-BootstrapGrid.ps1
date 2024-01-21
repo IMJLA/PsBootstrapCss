@@ -24,20 +24,20 @@ function New-BootstrapGrid {
 
         [string]$Justify = 'Center'
     )
-    begin{
+    begin {
         $String = @()
         [decimal]$ExactWidth = 12 / ($Html | Measure-Object).Count
         [int]$Width = [Math]::Floor($ExactWidth)
         $String += "<div class=`"container`"><div class=`"row justify-content-md-$($Justify.ToLower())`">"
     }
-    process{
+    process {
         ForEach ($OldHtml in $Html) {
             $String += "<div class=`"col col-lg-$Width`">$OldHtml</div>"
         }
     }
-    end{
+    end {
         $String += "</div></div>"
         $String -join ''
     }
-    
+
 }

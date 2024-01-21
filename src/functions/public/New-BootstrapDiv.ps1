@@ -27,13 +27,13 @@ function New-BootstrapDiv {
         )]
         [string]$Class = 'h-100 p-1 bg-light border rounded-3'
     )
-    begin{}
-    process{
+    begin {}
+    process {
         ForEach ($String in $Text) {
             #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
             "<div class=`"alert alert-$($Class.ToLower())`">$String</div>"
         }
     }
-    end{}
-    
+    end {}
+
 }

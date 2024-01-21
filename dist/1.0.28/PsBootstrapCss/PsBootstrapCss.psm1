@@ -317,15 +317,15 @@ function New-BootstrapAlert {
         )]
         [string]$Class = 'Info'
     )
-    begin{}
-    process{
+    begin {}
+    process {
         ForEach ($String in $Text) {
             #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
             "<div class=`"alert alert-$($Class.ToLower())`">$String</div>"
         }
     }
-    end{}
-    
+    end {}
+
 }
 function New-BootstrapColumn {
     <#
@@ -399,15 +399,15 @@ function New-BootstrapDiv {
         )]
         [string]$Class = 'h-100 p-1 bg-light border rounded-3'
     )
-    begin{}
-    process{
+    begin {}
+    process {
         ForEach ($String in $Text) {
             #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
             "<div class=`"alert alert-$($Class.ToLower())`">$String</div>"
         }
     }
-    end{}
-    
+    end {}
+
 }
 function New-BootstrapDivWithHeading {
     param (
@@ -455,22 +455,22 @@ function New-BootstrapGrid {
 
         [string]$Justify = 'Center'
     )
-    begin{
+    begin {
         $String = @()
         [decimal]$ExactWidth = 12 / ($Html | Measure-Object).Count
         [int]$Width = [Math]::Floor($ExactWidth)
         $String += "<div class=`"container`"><div class=`"row justify-content-md-$($Justify.ToLower())`">"
     }
-    process{
+    process {
         ForEach ($OldHtml in $Html) {
             $String += "<div class=`"col col-lg-$Width`">$OldHtml</div>"
         }
     }
-    end{
+    end {
         $String += "</div></div>"
         $String -join ''
     }
-    
+
 }
 Function New-BootstrapList {
     <#
@@ -499,14 +499,14 @@ Function New-BootstrapList {
         )]
         [System.String[]]$HtmlTable
     )
-    begin{}
-    process{
+    begin {}
+    process {
         ForEach ($Table in $HtmlTable) {
-            [String]$NewTable = $Table -replace '<table>','<table class="table table-striped">'
+            [String]$NewTable = $Table -replace '<table>', '<table class="table table-striped">'
             Write-Output $NewTable
         }
     }
-    end{}
+    end {}
 }
 function New-BootstrapPanel {
     <#
@@ -538,26 +538,26 @@ function New-BootstrapPanel {
 
         [string]$Footer
     )
-    begin{
+    begin {
         $String = @()
         $String += "<div class=`"panel panel-$($Class.ToLower())`">"
         if ($Heading) {
             $String += "<div class=`"panel-heading`">$Heading</div>"
         }
     }
-    process{
+    process {
         ForEach ($OldHtml in $Html) {
             $String += "<div class=`"panel-body`">$OldHtml</div>"
         }
     }
-    end{
+    end {
         if ($Footer) {
             $String += "<div class=`"panel-footer`">$Footer</div>"
         }
         $String += "</div>"
         $String -join ''
     }
-    
+
 }
 function New-BootstrapReport {
     <#
@@ -652,16 +652,16 @@ Function New-BootstrapTable {
         )]
         [System.String[]]$HtmlTable
     )
-    begin{}
-    process{
+    begin {}
+    process {
         ForEach ($Table in $HtmlTable) {
-            [String]$NewTable = $Table -replace '<table>','<table class="table table-striped">'
+            [String]$NewTable = $Table -replace '<table>', '<table class="table table-striped">'
             Write-Output $NewTable
         }
     }
-    end{}
+    end {}
 }
-function New-HtmlAnchor{
+function New-HtmlAnchor {
     <#
         .SYNOPSIS
             Build a new HTML anchor
@@ -677,9 +677,9 @@ function New-HtmlAnchor{
 
         #The text of the heading
         [Parameter(
-            Position=0,
-            ValueFromPipeline=$true,
-            Mandatory=$true
+            Position = 0,
+            ValueFromPipeline = $true,
+            Mandatory = $true
         )]
         [String[]]$Element,
 
@@ -688,13 +688,13 @@ function New-HtmlAnchor{
         [String]$Name
 
     )
-    begin{}
-    process{
+    begin {}
+    process {
         Write-Output "<h$Level>$Text</h$Level>"
     }
-    end{}
+    end {}
 }
-function New-HtmlHeading{
+function New-HtmlHeading {
     <#
         .SYNOPSIS
             Build a new HTML heading
@@ -710,21 +710,21 @@ function New-HtmlHeading{
 
         #The text of the heading
         [Parameter(
-            Position=0,
-            ValueFromPipeline=$True
+            Position = 0,
+            ValueFromPipeline = $True
         )]
         [String[]]$Text,
 
         #The heading level to generate (New-HtmlHeading can create h1, h2, h3, h4, h5, or h6 tags)
-        [ValidateRange(1,6)]
+        [ValidateRange(1, 6)]
         [Int16]$Level = 1
 
     )
-    begin{}
-    process{
+    begin {}
+    process {
         Write-Output "<h$Level>$Text</h$Level>"
     }
-    end{}
+    end {}
 }
 function New-HtmlParagraph {
     <#
@@ -742,21 +742,21 @@ function New-HtmlParagraph {
 
         #The text of the heading
         [Parameter(
-            Position=0,
-            ValueFromPipeline=$True
+            Position = 0,
+            ValueFromPipeline = $True
         )]
         [String[]]$Text,
 
         #The heading level to generate (New-HtmlHeading can create h1, h2, h3, h4, h5, or h6 tags)
-        [ValidateRange(1,6)]
+        [ValidateRange(1, 6)]
         [Int16]$Level = 1
 
     )
-    begin{}
-    process{
+    begin {}
+    process {
         Write-Output "<h$Level>$Text</h$Level>"
     }
-    end{}
+    end {}
 }
 <#
 # Add any custom C# classes as usable (exported) types
@@ -766,6 +766,8 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
+
 
 
 

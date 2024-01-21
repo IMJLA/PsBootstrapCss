@@ -28,24 +28,24 @@ function New-BootstrapPanel {
 
         [string]$Footer
     )
-    begin{
+    begin {
         $String = @()
         $String += "<div class=`"panel panel-$($Class.ToLower())`">"
         if ($Heading) {
             $String += "<div class=`"panel-heading`">$Heading</div>"
         }
     }
-    process{
+    process {
         ForEach ($OldHtml in $Html) {
             $String += "<div class=`"panel-body`">$OldHtml</div>"
         }
     }
-    end{
+    end {
         if ($Footer) {
             $String += "<div class=`"panel-footer`">$Footer</div>"
         }
         $String += "</div>"
         $String -join ''
     }
-    
+
 }
