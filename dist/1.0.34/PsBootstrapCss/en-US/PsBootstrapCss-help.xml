@@ -1215,9 +1215,33 @@ ConvertTo-BootstrapListGroup</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
+          <maml:name>Class</maml:name>
+          <maml:description>
+            <maml:para>{{ Fill Class Description }}</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
+        <maml:name>Class</maml:name>
+        <maml:description>
+          <maml:para>{{ Fill Class Description }}</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>Content</maml:name>
         <maml:description>
@@ -1998,7 +2022,7 @@ ConvertTo-BootstrapListGroup</dev:code>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Author: Jeremy La Camera Last Updated: 11/6/2016</maml:para>
+        <maml:para>Author: Jeremy La Camera Last Updated: March 2 2024</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>

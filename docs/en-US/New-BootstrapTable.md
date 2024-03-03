@@ -71,6 +71,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### A string wih the code for the Bootstrap table
 ## NOTES
 Author: Jeremy La Camera
-Last Updated: 11/6/2016
+Last Updated: March 2 2024
 
 ## RELATED LINKS

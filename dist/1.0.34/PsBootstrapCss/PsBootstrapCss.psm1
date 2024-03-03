@@ -418,7 +418,8 @@ function New-BootstrapDivWithHeading {
         [string]$HeadingText,
         [uint16]$HeadingLevel = 5,
         [string]$Content,
-        [hashtable]$HeadingsAndContent
+        [hashtable]$HeadingsAndContent,
+        [string]$Class = 'h-100 p-1 bg-light border rounded-3'
     )
 
     if ($PSBoundParameters.ContainsKey('HeadingsAndContent')) {
@@ -431,7 +432,8 @@ function New-BootstrapDivWithHeading {
         $Content
     }
 
-    New-BootstrapDiv -Text $Text
+    New-BootstrapDiv -Text $Text -Class $Class
+
 }
 function New-BootstrapGrid {
     <#
@@ -644,7 +646,7 @@ Function New-BootstrapTable {
             '<table class="table table-striped"><tr><th>Name</th><th>Id</th></tr><tr><td>ALMon</td><td>5540</td></tr></table>'
         .NOTES
             Author: Jeremy La Camera
-            Last Updated: 11/6/2016
+            Last Updated: March 2 2024
     #>
     [CmdletBinding()]
     param(
@@ -659,8 +661,7 @@ Function New-BootstrapTable {
     begin {}
     process {
         ForEach ($Table in $HtmlTable) {
-            [String]$NewTable = $Table -replace '<table>', '<table class="table table-striped">'
-            Write-Output $NewTable
+            $Table -replace '<table>', '<table class="table table-striped text-nowrap">'
         }
     }
     end {}
@@ -770,6 +771,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

@@ -14,7 +14,7 @@ schema: 2.0.0
 
 ```
 New-BootstrapDivWithHeading [[-HeadingText] <String>] [[-HeadingLevel] <UInt16>] [[-Content] <String>]
- [[-HeadingsAndContent] <Hashtable>]
+ [[-HeadingsAndContent] <Hashtable>] [[-Class] <String>]
 ```
 
 ## DESCRIPTION
@@ -30,6 +30,21 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 
 ## PARAMETERS
+
+### -Class
+{{ Fill Class Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Content
 {{ Fill Content Description }}

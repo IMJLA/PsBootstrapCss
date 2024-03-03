@@ -13,7 +13,7 @@ Function New-BootstrapTable {
             '<table class="table table-striped"><tr><th>Name</th><th>Id</th></tr><tr><td>ALMon</td><td>5540</td></tr></table>'
         .NOTES
             Author: Jeremy La Camera
-            Last Updated: 11/6/2016
+            Last Updated: March 2 2024
     #>
     [CmdletBinding()]
     param(
@@ -28,8 +28,7 @@ Function New-BootstrapTable {
     begin {}
     process {
         ForEach ($Table in $HtmlTable) {
-            [String]$NewTable = $Table -replace '<table>', '<table class="table table-striped">'
-            Write-Output $NewTable
+            $Table -replace '<table>', '<table class="table table-striped text-nowrap">'
         }
     }
     end {}
