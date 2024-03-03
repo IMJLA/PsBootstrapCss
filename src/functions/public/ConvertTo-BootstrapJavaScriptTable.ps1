@@ -7,7 +7,8 @@ function ConvertTo-BootstrapJavaScriptTable {
         [string[]]$SearchableColumn,
         [string[]]$DropdownColumn,
         [switch]$AllColumnsSearchable,
-        [string[]]$PropNames
+        [string[]]$PropNames,
+        [int]$PageSize
     )
 
     # Convert the arrays to hashtables for faster lookups
@@ -29,7 +30,10 @@ function ConvertTo-BootstrapJavaScriptTable {
     $null = $Stringbuilder.Append($Id)
     $null = $Stringbuilder.Append('"')
     if ($DataFilterControl) {
-        $null = $Stringbuilder.Append(' data-filter-control="true"')
+        $null = $Stringbuilder.Append(' class="table table-striped text-nowrap" data-filter-control="true" data-pagination="true"')
+    }
+    if ($PageSize) {
+        $null = $Stringbuilder.Append(" data-page-size=`"$PageSize`"")
     }
     $null = $Stringbuilder.AppendLine('>')
     $null = $Stringbuilder.AppendLine('<thead>')

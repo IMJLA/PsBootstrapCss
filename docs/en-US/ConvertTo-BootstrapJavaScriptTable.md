@@ -15,7 +15,7 @@ schema: 2.0.0
 ```
 ConvertTo-BootstrapJavaScriptTable [[-Id] <String>] [[-InputObject] <Object>] [-DataFilterControl]
  [[-UnsortableColumn] <String[]>] [[-SearchableColumn] <String[]>] [[-DropdownColumn] <String[]>]
- [-AllColumnsSearchable] [[-PropNames] <String[]>]
+ [-AllColumnsSearchable] [[-PropNames] <String[]>] [[-PageSize] <Int32>]
 ```
 
 ## DESCRIPTION
@@ -102,6 +102,21 @@ Aliases:
 
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PageSize
+{{ Fill PageSize Description }}
+
+```yaml
+Type: System.Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

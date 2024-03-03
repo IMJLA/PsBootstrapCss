@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.33] - 2024-03-02 - paging
+
+## [1.0.32] - 2024-03-02 - paging
+
+## [1.0.31] - 2024-03-02 - add paging
+
+## [1.0.30] - 2024-03-02 - add pagination
+
+## [1.0.29] - 2024-03-02 - add pagination
+
 ## [1.0.28] - 2024-01-20 - added spaces where needed to match the powershell-parsed module definition retrieved by get-module. this was causing gif diffs in export-permissionportable
 
 ## [1.0.27] - 2024-01-20 - added spaces where needed to match the powershell-parsed module definition retrieved by get-module. this was causing gif diffs in export-permissionportable

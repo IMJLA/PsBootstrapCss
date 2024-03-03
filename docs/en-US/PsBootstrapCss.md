@@ -2,7 +2,7 @@
 Module Name: PsBootstrapCss
 Module Guid: 86a3235a-083d-46f2-b3c6-3100418ae2c0
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.28
+Help Version: 1.0.33
 Locale: en-US
 ---
 
@@ -13,7 +13,7 @@ Use the Bootstrap CSS library to generate advanced HTML
 ## PsBootstrapCss Cmdlets
 ### [ConvertTo-BootstrapJavaScriptTable](ConvertTo-BootstrapJavaScriptTable.md)
 
-ConvertTo-BootstrapJavaScriptTable [[-Id] <string>] [[-InputObject] <Object>] [[-UnsortableColumn] <string[]>] [[-SearchableColumn] <string[]>] [[-DropdownColumn] <string[]>] [[-PropNames] <string[]>] [-DataFilterControl] [-AllColumnsSearchable]
+ConvertTo-BootstrapJavaScriptTable [[-Id] <string>] [[-InputObject] <Object>] [[-UnsortableColumn] <string[]>] [[-SearchableColumn] <string[]>] [[-DropdownColumn] <string[]>] [[-PropNames] <string[]>] [[-PageSize] <int>] [-DataFilterControl] [-AllColumnsSearchable]
 
 
 ### [ConvertTo-BootstrapListGroup](ConvertTo-BootstrapListGroup.md)
