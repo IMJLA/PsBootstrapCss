@@ -229,11 +229,13 @@ function Get-BootstrapTemplate {
 	</head>
 	<body>
 		<div class="container theme-showcase" role="main">
-			<div class="p-5 mb-4 bg-light rounded-3 d-print-block">
-				<h2 class="display-5 fw-bold d-print-block">_ReportTitle_</h2>
+			<div class="p-2 mb-2 bg-light rounded-3">
+				<h3 class="fw-bold">_ReportTitle_</h2>
 				<p>_ReportDescription_</p>
-			</div>_ReportBody_
-		</div>_ReportScript_
+			</div>
+			_ReportBody_
+		</div>
+		_ReportScript_
 	</body>
 </html>
 "@
@@ -771,6 +773,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
