@@ -27,7 +27,7 @@ function New-BootstrapAlert {
         )]
         [string]$Class = 'Info',
 
-        [string]$Padding = 'p-2 ',
+        [string]$Padding = ' p-2',
 
         [string]$AdditionalClasses
     )
@@ -35,7 +35,7 @@ function New-BootstrapAlert {
     process {
         ForEach ($String in $Text) {
             #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
-            "<div class=`"$Padding`alert alert-$($Class.ToLower())$AdditionalClasses`">$String</div>"
+            "<div class=`"alert$Padding alert-$($Class.ToLower())$AdditionalClasses`">$String</div>"
         }
     }
     end {}
