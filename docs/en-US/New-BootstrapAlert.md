@@ -13,8 +13,8 @@ Creates a new HTML div that uses the Bootstrap alert class
 ## SYNTAX
 
 ```
-New-BootstrapAlert [[-Text] <String[]>] [[-Class] <String>] [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+New-BootstrapAlert [[-Text] <String[]>] [[-Class] <String>] [-Padding <String>] [-AdditionalClasses <String>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,6 +32,21 @@ This example returns the following string:
 
 ## PARAMETERS
 
+### -AdditionalClasses
+{{ Fill AdditionalClasses Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Class
 {{ Fill Class Description }}
 
@@ -43,6 +58,21 @@ Aliases:
 Required: False
 Position: 2
 Default value: Info
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Padding
+{{ Fill Padding Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: P-2
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
