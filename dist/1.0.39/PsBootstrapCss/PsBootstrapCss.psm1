@@ -667,7 +667,7 @@ Function New-BootstrapTable {
     begin {}
     process {
         ForEach ($Table in $HtmlTable) {
-            $Table -replace '<table>', '<table class="table table-striped text-nowrap">'
+            $Table -replace '<table>', '<table class="table table-striped text-nowrap small table-sm">'
         }
     }
     end {}
@@ -777,6 +777,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

@@ -28,7 +28,7 @@ Function New-BootstrapTable {
     begin {}
     process {
         ForEach ($Table in $HtmlTable) {
-            $Table -replace '<table>', '<table class="table table-striped text-nowrap">'
+            $Table -replace '<table>', '<table class="table table-striped text-nowrap small table-sm">'
         }
     }
     end {}
