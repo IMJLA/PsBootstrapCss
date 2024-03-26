@@ -31,7 +31,7 @@ function ConvertTo-BootstrapJavaScriptTable {
     $null = $Stringbuilder.Append($Id)
     $null = $Stringbuilder.Append('"')
     if ($DataFilterControl) {
-        $null = $Stringbuilder.Append(' class="table table-striped text-nowrap" data-filter-control="true" data-pagination="true"')
+        $null = $Stringbuilder.Append(' class="table table-striped text-nowrap small table-sm" data-filter-control="true" data-pagination="true"')
     }
     if ($PageSize) {
         $null = $Stringbuilder.Append(" data-page-size=`"$PageSize`"")
@@ -777,6 +777,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

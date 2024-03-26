@@ -30,7 +30,7 @@ function ConvertTo-BootstrapJavaScriptTable {
     $null = $Stringbuilder.Append($Id)
     $null = $Stringbuilder.Append('"')
     if ($DataFilterControl) {
-        $null = $Stringbuilder.Append(' class="table table-striped text-nowrap" data-filter-control="true" data-pagination="true"')
+        $null = $Stringbuilder.Append(' class="table table-striped text-nowrap small table-sm" data-filter-control="true" data-pagination="true"')
     }
     if ($PageSize) {
         $null = $Stringbuilder.Append(" data-page-size=`"$PageSize`"")
