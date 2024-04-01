@@ -71,6 +71,7 @@ function ConvertTo-BootstrapJavaScriptTable {
     $Stringbuilder.ToString()
 }
 Function ConvertTo-BootstrapListGroup {
+
     <#
         .SYNOPSIS
             Upgrade a boring HTML list to a fancy Bootstrap list group
@@ -87,9 +88,12 @@ Function ConvertTo-BootstrapListGroup {
             This example returns the following string:
             '<ul class ="list-group"><li class ="list-group-item>1</li><li class ="list-group-item>2</li><li class ="list-group-item>3</li></ul>'
     #>
+
     [OutputType([System.String])]
     [CmdletBinding()]
+
     param(
+
         #The HTML table to apply the Bootstrap striped table CSS class to
         [Parameter(
             Position = 0,
@@ -97,17 +101,22 @@ Function ConvertTo-BootstrapListGroup {
             ValueFromPipelineByPropertyName
         )]
         [System.String[]]$HtmlList
+
     )
+
     process {
+
         ForEach ($List in $HtmlList) {
 
             $List -replace
-            '<ul>', '<ul class="list-group">' -replace
-            '<ol>', '<ol class="list-group">' -replace
+            '<ul>', '<ul class="list-group small">' -replace
+            '<ol>', '<ol class="list-group small">' -replace
             '<li>', '<li class ="list-group-item">'
 
         }
+
     }
+
 }
 
 
@@ -777,6 +786,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

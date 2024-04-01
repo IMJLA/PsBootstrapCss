@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.41] - 2024-03-31 - make listgroups small
+
 ## [1.0.40] - 2024-03-26 - small tables
 
 ## [1.0.39] - 2024-03-26 - small tables
