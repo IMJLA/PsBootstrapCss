@@ -4,7 +4,7 @@ function New-BootstrapDivWithHeading {
         [uint16]$HeadingLevel = 5,
         [string]$Content,
         [hashtable]$HeadingsAndContent,
-        [string]$Class = 'h-100 p-1 bg-light border rounded-3'
+        [string]$Class = 'h-100 p-1 bg-light border rounded-3 small'
     )
 
     if ($PSBoundParameters.ContainsKey('HeadingsAndContent')) {

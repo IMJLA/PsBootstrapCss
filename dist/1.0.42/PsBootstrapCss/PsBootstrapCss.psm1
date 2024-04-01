@@ -434,7 +434,7 @@ function New-BootstrapDivWithHeading {
         [uint16]$HeadingLevel = 5,
         [string]$Content,
         [hashtable]$HeadingsAndContent,
-        [string]$Class = 'h-100 p-1 bg-light border rounded-3'
+        [string]$Class = 'h-100 p-1 bg-light border rounded-3 small'
     )
 
     if ($PSBoundParameters.ContainsKey('HeadingsAndContent')) {
@@ -786,6 +786,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
