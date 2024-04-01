@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.43] - 2024-03-31 - updated css and js framework versions
+
 ## [1.0.42] - 2024-03-31 - default small div class
 
 ## [1.0.41] - 2024-03-31 - make listgroups small
