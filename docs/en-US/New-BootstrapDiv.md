@@ -13,7 +13,7 @@ Creates a new HTML div that uses the Bootstrap alert class
 ## SYNTAX
 
 ```
-New-BootstrapDiv [[-Text] <String[]>] [[-Class] <String>] [-ProgressAction <ActionPreference>]
+New-BootstrapDiv [[-Text] <String[]>] [[-Class] <String>] [-Id <String>] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
@@ -43,6 +43,21 @@ Aliases:
 Required: False
 Position: 2
 Default value: H-100 p-1 bg-light border rounded-3
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Id
+{{ Fill Id Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -25,15 +25,22 @@ function New-BootstrapDiv {
         [Parameter(
             Position = 1
         )]
-        [string]$Class = 'h-100 p-1 bg-light border rounded-3'
+        [string]$Class = 'h-100 p-1 bg-light border rounded-3',
+
+        [string]$Id
     )
-    begin {}
+
+    begin {
+        if ($Id) {
+            $DivId = " id=`"$Id`""
+        }
+    }
+
     process {
         ForEach ($String in $Text) {
             #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
-            "<div class=`"alert alert-$($Class.ToLower())`">$String</div>"
+            "<div$DivId class=`"alert alert-$($Class.ToLower())`">$String</div>"
         }
     }
-    end {}
 
 }
