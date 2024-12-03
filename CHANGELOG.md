@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.47] - 2024-12-02 - add dynamic row clicking functionality to match div id support
+
 ## [1.0.46] - 2024-12-02 - add div id support
 
 ## [1.0.45] - 2024-12-02 - add div id support
