@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.48] - 2024-12-02 - bugfix proper syntax closing the bootstrapTable method call
+
 ## [1.0.47] - 2024-12-02 - add dynamic row clicking functionality to match div id support
 
 ## [1.0.46] - 2024-12-02 - add div id support

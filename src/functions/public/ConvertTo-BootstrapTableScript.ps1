@@ -48,6 +48,7 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.AppendLine("              console.error('Target div not found:', modifiedString);")
     $null = $ResultingJavaScript.AppendLine('          }')
     $null = $ResultingJavaScript.AppendLine('      }')
+    $null = $ResultingJavaScript.AppendLine('});')
 
     ########
     # Only one of these two blocks of 4 lines is needed, but I need to get the JavaScript working.  For now the template has these attributes hard-coded

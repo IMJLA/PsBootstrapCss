@@ -168,6 +168,7 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.AppendLine("              console.error('Target div not found:', modifiedString);")
     $null = $ResultingJavaScript.AppendLine('          }')
     $null = $ResultingJavaScript.AppendLine('      }')
+    $null = $ResultingJavaScript.AppendLine('});')
 
     ########
     # Only one of these two blocks of 4 lines is needed, but I need to get the JavaScript working.  For now the template has these attributes hard-coded
@@ -815,6 +816,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
