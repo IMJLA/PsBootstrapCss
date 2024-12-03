@@ -36,7 +36,7 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.AppendLine('          var fieldNames = Object.keys(row);')
     $null = $ResultingJavaScript.AppendLine('          if (fieldNames) {')
     $null = $ResultingJavaScript.AppendLine('              let firstField = fieldNames[0];')
-    $null = $ResultingJavaScript.AppendLine("              let modifiedString = 'Div_' + firstField.replace(/[^A-Za-z0-9\-_]/g, '-');")
+    $null = $ResultingJavaScript.AppendLine("              let modifiedString = 'Div_' + row[firstField].replace(/[^A-Za-z0-9\-_]/g, '-');")
     $null = $ResultingJavaScript.AppendLine("              let uniqueHash = modifiedString + '_' + new Date().getTime();")
     $null = $ResultingJavaScript.AppendLine("              let tempDiv = document.createElement('div');")
     $null = $ResultingJavaScript.AppendLine('              tempDiv.id = uniqueHash;')

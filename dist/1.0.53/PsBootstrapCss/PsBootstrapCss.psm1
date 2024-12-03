@@ -156,7 +156,7 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.AppendLine('          var fieldNames = Object.keys(row);')
     $null = $ResultingJavaScript.AppendLine('          if (fieldNames) {')
     $null = $ResultingJavaScript.AppendLine('              let firstField = fieldNames[0];')
-    $null = $ResultingJavaScript.AppendLine("              let modifiedString = 'Div_' + firstField.replace(/[^A-Za-z0-9\-_]/g, '-');")
+    $null = $ResultingJavaScript.AppendLine("              let modifiedString = 'Div_' + row[firstField].replace(/[^A-Za-z0-9\-_]/g, '-');")
     $null = $ResultingJavaScript.AppendLine("              let uniqueHash = modifiedString + '_' + new Date().getTime();")
     $null = $ResultingJavaScript.AppendLine("              let tempDiv = document.createElement('div');")
     $null = $ResultingJavaScript.AppendLine('              tempDiv.id = uniqueHash;')
@@ -820,6 +820,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
