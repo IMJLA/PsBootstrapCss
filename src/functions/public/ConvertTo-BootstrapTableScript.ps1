@@ -52,11 +52,6 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.AppendLine('      }')
     $null = $ResultingJavaScript.AppendLine('});')
 
-    // Assuming 'row' is your HTMLTableRowElement
-    // This selects the first cell of the row
-    let cellValue = firstCell.textContent || firstCell.innerText; // Get the text content of the cell
-
-
     ########
     # Only one of these two blocks of 4 lines is needed, but I need to get the JavaScript working.  For now the template has these attributes hard-coded
     $null = $ResultingJavaScript.Append("    `$('")
