@@ -33,7 +33,9 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.AppendLine("      columns: $ColumnJson,")
     $null = $ResultingJavaScript.AppendLine("      data: $DataJson,")
     $null = $ResultingJavaScript.AppendLine('      onClickRow: function (row, element, field) {')
-    $null = $ResultingJavaScript.AppendLine("          let modifiedString = 'Div_' + row.Folder.replace(/[^A-Za-z0-9\-_]/g, '-');")
+    $null = $ResultingJavaScript.AppendLine('          let firstCell = row.cells[0];')
+    $null = $ResultingJavaScript.AppendLine('          let cellValue = firstCell.textContent || firstCell.innerText;')
+    $null = $ResultingJavaScript.AppendLine("          let modifiedString = 'Div_' + cellValue.replace(/[^A-Za-z0-9\-_]/g, '-');")
     $null = $ResultingJavaScript.AppendLine("          let uniqueHash = modifiedString + '_' + new Date().getTime();")
     $null = $ResultingJavaScript.AppendLine("          let tempDiv = document.createElement('div');")
     $null = $ResultingJavaScript.AppendLine('          tempDiv.id = uniqueHash;')
@@ -49,6 +51,11 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.AppendLine('          }')
     $null = $ResultingJavaScript.AppendLine('      }')
     $null = $ResultingJavaScript.AppendLine('});')
+
+    // Assuming 'row' is your HTMLTableRowElement
+    // This selects the first cell of the row
+    let cellValue = firstCell.textContent || firstCell.innerText; // Get the text content of the cell
+
 
     ########
     # Only one of these two blocks of 4 lines is needed, but I need to get the JavaScript working.  For now the template has these attributes hard-coded
