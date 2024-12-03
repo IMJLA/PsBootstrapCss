@@ -33,7 +33,7 @@ function ConvertTo-BootstrapTableScript {
     $null = $ResultingJavaScript.AppendLine("      columns: $ColumnJson,")
     $null = $ResultingJavaScript.AppendLine("      data: $DataJson,")
     $null = $ResultingJavaScript.AppendLine('      onClickRow: function (row, element, field) {')
-    $null = $ResultingJavaScript.AppendLine("          let modifiedString = 'Div_' + row.Folder.replace(/[^A-Za-z0-9\\-_]/g, '-');")
+    $null = $ResultingJavaScript.AppendLine("          let modifiedString = 'Div_' + row.Folder.replace(/[^A-Za-z0-9\-_]/g, '-');")
     $null = $ResultingJavaScript.AppendLine("          let uniqueHash = modifiedString + '_' + new Date().getTime();")
     $null = $ResultingJavaScript.AppendLine("          let tempDiv = document.createElement('div');")
     $null = $ResultingJavaScript.AppendLine('          tempDiv.id = uniqueHash;')
