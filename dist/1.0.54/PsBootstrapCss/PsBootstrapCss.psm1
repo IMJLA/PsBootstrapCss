@@ -457,7 +457,7 @@ function New-BootstrapDiv {
     process {
         ForEach ($String in $Text) {
             #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
-            "<div$DivId class=`"alert alert-$($Class.ToLower())`">$String</div>"
+            "<div$DivId class=`"alert $($Class.ToLower())`">$String</div>"
         }
     }
 
@@ -820,6 +820,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

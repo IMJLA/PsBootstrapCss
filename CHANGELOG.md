@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.54] - 2025-01-20 - bugfix class typo due to copy pasta
+
 ## [1.0.53] - 2024-12-02 - bugfix dynamically handle different GroupBy params
 
 ## [1.0.52] - 2024-12-02 - bugfix dynamically handle different GroupBy params
