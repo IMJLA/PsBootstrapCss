@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.61] - 2025-01-20 - add class param
+
+## [1.0.60] - 2025-01-20 - add class param
+
+## [1.0.59] - 2025-01-20 - add class param
+
+## [1.0.58] - 2025-01-20 - add class param
+
+## [1.0.57] - 2025-01-20 - add class param
+
+## [1.0.56] - 2025-01-20 - add class param
+
+## [1.0.55] - 2025-01-20 - add class param
+
 ## [1.0.54] - 2025-01-20 - bugfix class typo due to copy pasta
 
 ## [1.0.53] - 2024-12-02 - bugfix dynamically handle different GroupBy params

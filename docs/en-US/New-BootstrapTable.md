@@ -13,7 +13,8 @@ Upgrade a boring HTML table to a fancy Bootstrap table
 ## SYNTAX
 
 ```
-New-BootstrapTable [[-HtmlTable] <String[]>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+New-BootstrapTable [[-HtmlTable] <String[]>] [-Class <String>] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,6 +31,22 @@ This example returns the following string:
 '\<table class="table table-striped"\>\<tr\>\<th\>Name\</th\>\<th\>Id\</th\>\</tr\>\<tr\>\<td\>ALMon\</td\>\<td\>5540\</td\>\</tr\>\</table\>'
 
 ## PARAMETERS
+
+### -Class
+Classes to append to the table.
+Specify as a single string, starting with a space.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -HtmlTable
 The HTML table to apply the Bootstrap striped table CSS class to

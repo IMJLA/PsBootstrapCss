@@ -23,12 +23,15 @@ Function New-BootstrapTable {
             ValueFromPipeline,
             ValueFromPipelineByPropertyName
         )]
-        [System.String[]]$HtmlTable
+        [System.String[]]$HtmlTable,
+
+        # Classes to append to the table. Specify as a single string, starting with a space.
+        [string]$Class
     )
     begin {}
     process {
         ForEach ($Table in $HtmlTable) {
-            $Table -replace '<table>', '<table class="table table-striped text-nowrap small table-sm">'
+            $Table -replace '<table>', "<table class=`"table table-striped text-nowrap small table-sm$Class`">"
         }
     }
     end {}
