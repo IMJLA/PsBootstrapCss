@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.62] - 2025-01-20 - update psakefile
+
 ## [1.0.61] - 2025-01-20 - add class param
 
 ## [1.0.60] - 2025-01-20 - add class param
