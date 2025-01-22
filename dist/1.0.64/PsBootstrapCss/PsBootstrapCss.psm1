@@ -373,6 +373,39 @@ function New-BootstrapAlert {
     end {}
 
 }
+function New-BootstrapCodeBlock {
+
+    [CmdletBinding()]
+
+    param(
+        #The HTML element to apply the Bootstrap column to
+        [Parameter(
+            Position = 0,
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
+        [string[]]$Text,
+
+        [switch]$Inline
+    )
+
+    process {
+
+        ForEach ($String in $Text) {
+
+            $Code = "<code>$String</code>"
+
+            if ($Inline) {
+                "<pre>$Code</pre>"
+            } else {
+                $Code
+            }
+
+        }
+
+    }
+
+}
 function New-BootstrapColumn {
     <#
         .SYNOPSIS
@@ -822,7 +855,8 @@ ForEach ($ThisFile in $CSharpFiles) {
     Add-Type -Path $ThisFile.FullName -ErrorAction Stop
 }
 #>
-Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapCodeBlock','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

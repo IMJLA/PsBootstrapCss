@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.64] - 2025-01-21 - add new funct
+
 ## [1.0.63] - 2025-01-21 - bugfix need hyphen not space
 
 ## [1.0.62] - 2025-01-20 - update psakefile

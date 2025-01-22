@@ -2,7 +2,7 @@
 Module Name: PsBootstrapCss
 Module Guid: 86a3235a-083d-46f2-b3c6-3100418ae2c0
 Download Help Link: {{ Update Download Link }}
-Help Version: 1.0.63
+Help Version: 1.0.64
 Locale: en-US
 ---
 
@@ -41,6 +41,11 @@ Get-JavaScript
 
 ### [New-BootstrapAlert](New-BootstrapAlert.md)
 Creates a new HTML div that uses the Bootstrap alert class
+
+### [New-BootstrapCodeBlock](New-BootstrapCodeBlock.md)
+
+New-BootstrapCodeBlock [[-Text] <string[]>] [-Inline] [<CommonParameters>]
+
 
 ### [New-BootstrapColumn](New-BootstrapColumn.md)
 Wraps HTML elements in a Bootstrap column of the specified width
