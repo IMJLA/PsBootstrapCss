@@ -374,6 +374,7 @@ function Get-JavaScript {
 				},{className:"literal",begin:/(-){1,2}[\w\d-]+/,relevance:0}]},m)}}})()
 				;hljs.registerLanguage("powershell",e)})();
 			</script>
+			<script>hljs.highlightAll();</script>
 			<script>
 				//src="https://unpkg.com/bootstrap-table@1.22.4/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"
 				/**
