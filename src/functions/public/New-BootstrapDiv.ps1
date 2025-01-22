@@ -39,7 +39,7 @@ function New-BootstrapDiv {
     process {
         ForEach ($String in $Text) {
             #"<div class=`"alert alert-$($Class.ToLower())`"><strong>$Class!</strong> $String</div>"
-            "<div$DivId class=`"alert $($Class.ToLower())`">$String</div>"
+            "<div$DivId class=`"alert-$($Class.ToLower())`">$String</div>"
         }
     }
 
