@@ -376,7 +376,11 @@ function Get-JavaScript {
 			</script>
 			<script>
 				hljs.highlightAll();
-      			hljs.addPlugin(new CopyButtonPlugin());
+				hljs.addPlugin(
+					new CopyButtonPlugin({
+						autohide: false, // Always show the copy button
+					})
+				);
 			</script>
 			<script>
 				//src="https://unpkg.com/bootstrap-table@1.22.4/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"
