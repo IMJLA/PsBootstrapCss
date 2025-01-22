@@ -1212,9 +1212,9 @@ function New-HighlightJsCodeBlock {
             $Code = "<code class=`"language-$Language`">$String</code>"
 
             if ($Inline) {
-                "<pre>$Code</pre>"
-            } else {
                 $Code
+            } else {
+                "<pre>$Code</pre>"
             }
 
         }
@@ -1327,6 +1327,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HighlightJsCodeBlock','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

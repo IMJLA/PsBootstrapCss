@@ -23,9 +23,9 @@ function New-HighlightJsCodeBlock {
             $Code = "<code class=`"language-$Language`">$String</code>"
 
             if ($Inline) {
-                "<pre>$Code</pre>"
-            } else {
                 $Code
+            } else {
+                "<pre>$Code</pre>"
             }
 
         }

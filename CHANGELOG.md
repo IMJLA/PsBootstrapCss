@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.69] - 2025-01-21 - bugfix swap inline
+
 ## [1.0.68] - 2025-01-21 - add style to template for hljs
 
 ## [1.0.67] - 2025-01-21 - add missing js for syntax highlighting
