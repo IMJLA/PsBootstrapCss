@@ -12,7 +12,7 @@
 RootModule = 'PsBootstrapCss.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.71'
+ModuleVersion = '1.0.72'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
