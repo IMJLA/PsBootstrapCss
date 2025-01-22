@@ -1,4 +1,4 @@
-function New-BootstrapCodeBlock {
+function New-HighlightJsCodeBlock {
 
     [CmdletBinding()]
 
@@ -11,6 +11,8 @@ function New-BootstrapCodeBlock {
         )]
         [string[]]$Text,
 
+        [string]$Language = 'powershell',
+
         [switch]$Inline
     )
 
@@ -18,7 +20,7 @@ function New-BootstrapCodeBlock {
 
         ForEach ($String in $Text) {
 
-            $Code = "<code>$String</code>"
+            $Code = "<code class=`"language-$Language`">$String</code>"
 
             if ($Inline) {
                 "<pre>$Code</pre>"

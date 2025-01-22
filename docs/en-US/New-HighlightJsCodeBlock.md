@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# New-BootstrapCodeBlock
+# New-HighlightJsCodeBlock
 
 ## SYNOPSIS
 {{ Fill in the Synopsis }}
@@ -13,7 +13,8 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-New-BootstrapCodeBlock [[-Text] <String[]>] [-Inline] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+New-HighlightJsCodeBlock [[-Text] <String[]>] [-Language <String>] [-Inline]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,6 +36,21 @@ PS C:\> {{ Add example code here }}
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Language
+{{ Fill Language Description }}
+
+```yaml
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
