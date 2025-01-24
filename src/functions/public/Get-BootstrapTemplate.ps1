@@ -73,7 +73,7 @@ function Get-BootstrapTemplate {
 
 			/* Create the caret/arrow with a unicode, and style it */
 			.caret::before {
-			content: "\25B6";
+			content: "\27A7";
 			color: black;
 			display: inline-block;
 			margin-right: 6px;

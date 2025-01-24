@@ -305,7 +305,7 @@ function Get-BootstrapTemplate {
 
 			/* Create the caret/arrow with a unicode, and style it */
 			.caret::before {
-			content: "\25B6";
+			content: "\27A7";
 			color: black;
 			display: inline-block;
 			margin-right: 6px;
@@ -1293,6 +1293,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HighlightJsCodeBlock','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 
