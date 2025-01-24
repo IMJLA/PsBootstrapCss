@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.73] - 2025-01-23 - add css and js for unordered lists
+
 ## [1.0.72] - 2025-01-21 - bugfix script order
 
 ## [1.0.71] - 2025-01-21 - minify
