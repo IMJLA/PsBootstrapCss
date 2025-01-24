@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-ConvertTo-HtmlList [-InputObject] <String[]> [-Ordered] [-ProgressAction <ActionPreference>]
+ConvertTo-HtmlList [-InputObject] <String[]> [-Ordered] [-Class <String>] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
@@ -30,6 +30,21 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 
 ## PARAMETERS
+
+### -Class
+{{ Fill Class Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -InputObject
 {{ Fill InputObject Description }}

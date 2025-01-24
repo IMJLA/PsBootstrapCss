@@ -202,7 +202,8 @@ function ConvertTo-HtmlList {
             ValueFromPipeline = $true
         )]
         [string[]]$InputObject,
-        [switch]$Ordered
+        [switch]$Ordered,
+        [string]$Class
     )
     begin {
 
@@ -212,7 +213,11 @@ function ConvertTo-HtmlList {
             $ListType = 'ul'
         }
 
-        $StringBuilder = [System.Text.StringBuilder]::new("<$ListType>")
+        if ($Class) {
+            $StringBuilder = [System.Text.StringBuilder]::new("<$ListType class=`"$Class`">")
+        } else {
+            $StringBuilder = [System.Text.StringBuilder]::new("<$ListType>")
+        }
 
     }
     process {
@@ -1288,6 +1293,7 @@ ForEach ($ThisFile in $CSharpFiles) {
 }
 #>
 Export-ModuleMember -Function @('ConvertTo-BootstrapJavaScriptTable','ConvertTo-BootstrapListGroup','ConvertTo-BootstrapTableScript','ConvertTo-HtmlList','Get-BootstrapTemplate','Get-JavaScript','New-BootstrapAlert','New-BootstrapColumn','New-BootstrapDiv','New-BootstrapDivWithHeading','New-BootstrapGrid','New-BootstrapList','New-BootstrapPanel','New-BootstrapReport','New-BootstrapTable','New-HighlightJsCodeBlock','New-HtmlAnchor','New-HtmlHeading','New-HtmlParagraph')
+
 
 
 

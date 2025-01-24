@@ -6,7 +6,8 @@ function ConvertTo-HtmlList {
             ValueFromPipeline = $true
         )]
         [string[]]$InputObject,
-        [switch]$Ordered
+        [switch]$Ordered,
+        [string]$Class
     )
     begin {
 
@@ -16,7 +17,11 @@ function ConvertTo-HtmlList {
             $ListType = 'ul'
         }
 
-        $StringBuilder = [System.Text.StringBuilder]::new("<$ListType>")
+        if ($Class) {
+            $StringBuilder = [System.Text.StringBuilder]::new("<$ListType class=`"$Class`">")
+        } else {
+            $StringBuilder = [System.Text.StringBuilder]::new("<$ListType>")
+        }
 
     }
     process {
