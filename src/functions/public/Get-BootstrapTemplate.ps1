@@ -53,47 +53,6 @@ function Get-BootstrapTemplate {
 			*/
 			@charset "UTF-8";.no-filter-control{height:40px}.filter-control{margin:0 2px 2px}.ms-choice{border:0}.ms-parent>button:focus{outline:0}
 		</style>
-		<style type="text/css">
-			/* Remove default bullets */
-			ul, #FileList {
-			list-style-type: none;
-			}
-
-			/* Remove margins and padding from the parent ul */
-			#FileList {
-			margin: 0;
-			padding: 0;
-			}
-
-			/* Style the caret/arrow */
-			.caret {
-			cursor: pointer;
-			user-select: none; /* Prevent text selection */
-			}
-
-			/* Create the caret/arrow with a unicode, and style it */
-			.caret::before {
-			content: "\27A7";
-			color: black;
-			display: inline-block;
-			margin-right: 6px;
-			}
-
-			/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-			.caret-down::before {
-			transform: rotate(90deg);
-			}
-
-			/* Hide the nested list */
-			.nested {
-			display: none;
-			}
-
-			/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
-			.active {
-			display: block;
-			}
-		</style>
 		<title>_ReportTitle_</title>
 	</head>
 	<body>
